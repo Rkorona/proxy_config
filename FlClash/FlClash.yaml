@@ -1,5 +1,4 @@
 mode: rule
-
 allow-lan: true
 ipv6: true
 global-ua: clash.meta
