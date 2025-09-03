@@ -7,7 +7,7 @@ const compatible_outbound = {
 let compatible
 let config = JSON.parse($files[0])
 let proxies = await produceArtifact({
-  name: '测试',
+  name: '组合订阅',
   type: 'collection', // /^1$|col/i.test(type) ? 'collection' : 'subscription',
   platform: 'sing-box',
   produceType: 'internal',
@@ -21,23 +21,23 @@ config.outbounds.map(i => {
     i.outbounds.push(...getTags(proxies))
   }
   **/
-  if (['hongkong', 'hongkong-auto'].includes(i.tag)) {
+  if (['hk', 'hk-auto'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /港|hk|hongkong|kong kong|🇭🇰/i))
   }
-  if (['taiwan', 'taiwan-auto'].includes(i.tag)) {
+  if (['tw', 'tw-auto'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /台|tw|taiwan|🇼🇸/i))
   }
-  if (['japan', 'japan-auto'].includes(i.tag)) {
+  if (['jp', 'jp-auto'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /日本|jp|japan|🇯🇵/i))
   }
-  if (['singapore', 'singapore-auto'].includes(i.tag)) {
+  if (['sg', 'sg-auto'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)/i))
   }
   if (['korea', 'korea-auto'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /韩|kr|korea|🇰🇷/i))
   }
-  if (['america', 'america-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /美|us|unitedstates|united states|🇺🇸/i))
+  if (['us', 'us-auto'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /美|us|unitedstates|america|🇺🇸/i))
   }
   if (['cn', 'cn-auto'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /徐州|武汉|镇江|济南|🇨🇳/i))

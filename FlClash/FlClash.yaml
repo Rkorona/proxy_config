@@ -24,7 +24,7 @@ geox-url:
   geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
   mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
   asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
-  proxy: Proxy
+  proxy: DIRECT
 profile:
   store-selected: true
   store-fake-ip: true
@@ -77,13 +77,13 @@ tun:
   auto-detect-interface: true
 
 proxy-providers:
-  中国国际机场:
+  ZGJ:
     url: ""
     type: http
     interval: 25200
     health-check:
       enable: true
-      interval: 3600
+      interval: 300
       url: "https://www.gstatic.com/generate_204"
 
 url-test: &url-test
@@ -177,33 +177,33 @@ proxy-groups:
 # 规则
 rules:
   - RULE-SET,Advertising_Domain,REJECT
-  - DST-PORT,53,dns-out
+  # - DST-PORT,53,dns-out
   # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # 禁用quic(不包括国内)
   - RULE-SET,github,GitHub
   - RULE-SET,youtube,YouTube
   - RULE-SET,spotify,Spotify
   - RULE-SET,google,Google
-  - RULE-SET,google_ip,Google,no-resolve
+  - RULE-SET,google_ip,Google
   - RULE-SET,geolocation-!cn,Proxy
   - RULE-SET,ChinaMax_Domain,China
-  - RULE-SET,ChinaMax_IP,China,no-resolve
+  - RULE-SET,ChinaMax_IP,China
   - RULE-SET,private,China,no-resolve
   
   - GEOSITE,CN,China
-  - GEOIP,CN,China,no-resolve
+  - GEOIP,CN,China
   - MATCH,Proxy
 
 rule-anchor:
   ip: &ip
     type: http
     interval: 86400
-    proxy: Proxy
+    proxy: DIRECT
     behavior: ipcidr
     format: yaml
   domain: &domain
     type: http
     interval: 86400
-    proxy: Proxy
+    proxy: DIRECT
     behavior: domain
     format: yaml
 # 规则集

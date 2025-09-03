@@ -10,7 +10,7 @@
         "tag": "cf",
         "type": "https",
         "server": "1.1.1.1",
-        "detour": "proxy"
+        "detour": "Proxy"
       },
       {
         "tag": "ali",
@@ -86,121 +86,124 @@
   ],
   "outbounds": [
     {
-      "tag": "proxy",
+      "tag": "Proxy",
       "type": "selector",
+      "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "hongkong-auto",
-        "taiwan",
-        "taiwan-auto",
-        "japan",
-        "japan-auto",
-        "singapore",
-        "singapore-auto",
-        "korea",
-        "korea-auto",
-        "america",
-        "america-auto",
+        "hk",
+        "hk-auto",
+        "tw",
+        "tw-auto",
+        "jp",
+        "jp-auto",
+        "sg",
+        "sg-auto",
+        "kr",
+        "kr-auto",
+        "us",
+        "us-auto",
         "cn",
         "cn-auto",
-        "other"
-      ],
-      "default": "hongkong-auto"
+        "other",
+        "direct"
+      ]
     },
     {
-      "tag": "google",
+      "tag": "Google",
       "type": "selector",
+      "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "hongkong-auto",
-        "taiwan",
-        "taiwan-auto",
-        "japan",
-        "japan-auto",
-        "singapore",
-        "singapore-auto",
-        "korea",
-        "korea-auto",
-        "america",
-        "america-auto",
+        "hk",
+        "hk-auto",
+        "tw",
+        "tw-auto",
+        "jp",
+        "jp-auto",
+        "sg",
+        "sg-auto",
+        "kr",
+        "kr-auto",
+        "us",
+        "us-auto",
         "cn",
         "cn-auto",
-        "other"
-      ],
-      "default": "singapore-auto"
+        "other",
+        "direct"
+      ]
     },
     {
-      "tag": "github",
+      "tag": "Github",
       "type": "selector",
+      "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "hongkong-auto",
-        "taiwan",
-        "taiwan-auto",
-        "japan",
-        "japan-auto",
-        "singapore",
-        "singapore-auto",
-        "korea",
-        "korea-auto",
-        "america",
-        "america-auto",
+        "hk",
+        "hk-auto",
+        "tw",
+        "tw-auto",
+        "jp",
+        "jp-auto",
+        "sg",
+        "sg-auto",
+        "kr",
+        "kr-auto",
+        "us",
+        "us-auto",
         "cn",
         "cn-auto",
-        "other"
-      ],
-      "default": "hongkong-auto"
+        "other",
+        "direct"
+      ]
     },
     {
-      "tag": "china",
+      "tag": "China",
       "type": "selector",
+      "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "hongkong-auto",
-        "taiwan",
-        "taiwan-auto",
-        "japan",
-        "japan-auto",
-        "singapore",
-        "singapore-auto",
-        "korea",
-        "korea-auto",
-        "america",
-        "america-auto",
+        "hk",
+        "hk-auto",
+        "tw",
+        "tw-auto",
+        "jp",
+        "jp-auto",
+        "sg",
+        "sg-auto",
+        "kr",
+        "kr-auto",
+        "us",
+        "us-auto",
         "cn",
         "cn-auto",
-        "direct",
-        "other"
-      ],
-      "default": "cn-auto"
+        "other",
+        "direct"
+      ]
     },
     {
-      "tag": "hongkong",
+      "tag": "hk",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "taiwan",
+      "tag": "tw",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "japan",
+      "tag": "jp",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "singapore",
+      "tag": "sg",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "korea",
+      "tag": "kr",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "america",
+      "tag": "us",
       "type": "selector",
       "outbounds": []
     },
@@ -217,7 +220,7 @@
       "outbounds": []
     },
     {
-      "tag": "hongkong-auto",
+      "tag": "hk-auto",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -225,7 +228,7 @@
       "tolerance": 50
     },
     {
-      "tag": "taiwan-auto",
+      "tag": "tw-auto",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -233,7 +236,7 @@
       "tolerance": 50
     },
     {
-      "tag": "japan-auto",
+      "tag": "jp-auto",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -241,7 +244,7 @@
       "tolerance": 50
     },
     {
-      "tag": "singapore-auto",
+      "tag": "sg-auto",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -249,7 +252,7 @@
       "tolerance": 50
     },
     {
-      "tag": "korea-auto",
+      "tag": "kr-auto",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -257,7 +260,7 @@
       "tolerance": 50
     },
     {
-      "tag": "america-auto",
+      "tag": "us-auto",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -315,7 +318,7 @@
       {
         "clash_mode": "Global",
         "action": "route",
-        "outbound": "proxy"
+        "outbound": "Proxy"
       },
       {
         "clash_mode": "Direct",
@@ -325,7 +328,7 @@
       {
         "rule_set": "github_domain",
         "action": "route",
-        "outbound": "github"
+        "outbound": "Github"
       },
       {
         "action": "resolve"
@@ -336,7 +339,7 @@
           "google_domain"
         ],
         "action": "route",
-        "outbound": "google"
+        "outbound": "Google"
       },
       {
         "rule_set": [
@@ -344,15 +347,15 @@
           "cn_domain"
         ],
         "action": "route",
-        "outbound": "china"
+        "outbound": "China"
       },
       {
         "rule_set": "proxy_domain",
         "action": "route",
-        "outbound": "proxy"
+        "outbound": "Proxy"
       }
     ],
-    "final": "proxy",
+    "final": "Proxy",
     "override_android_vpn": true,
     "auto_detect_interface": true,
     "rule_set": [
