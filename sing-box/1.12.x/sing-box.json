@@ -16,7 +16,7 @@
         "tag": "ali",
         "type": "https",
         "server": "223.5.5.5",
-        "detour": "cn-auto"
+        "detour": "cn"
       },
       {
         "tag": "fakeip",
@@ -91,19 +91,12 @@
       "interrupt_exist_connections": true,
       "outbounds": [
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "kr",
-        "kr-auto",
         "us",
-        "us-auto",
         "cn",
-        "cn-auto",
         "other",
         "direct"
       ]
@@ -114,19 +107,12 @@
       "interrupt_exist_connections": true,
       "outbounds": [
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "kr",
-        "kr-auto",
         "us",
-        "us-auto",
         "cn",
-        "cn-auto",
         "other",
         "direct"
       ]
@@ -137,19 +123,12 @@
       "interrupt_exist_connections": true,
       "outbounds": [
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "kr",
-        "kr-auto",
         "us",
-        "us-auto",
         "cn",
-        "cn-auto",
         "other",
         "direct"
       ]
@@ -160,19 +139,12 @@
       "interrupt_exist_connections": true,
       "outbounds": [
         "hk",
-        "hk-auto",
         "tw",
-        "tw-auto",
         "jp",
-        "jp-auto",
         "sg",
-        "sg-auto",
         "kr",
-        "kr-auto",
         "us",
-        "us-auto",
         "cn",
-        "cn-auto",
         "other",
         "direct"
       ]
@@ -200,7 +172,9 @@
     {
       "tag": "kr",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [
+        "direct"
+      ]
     },
     {
       "tag": "us",
@@ -218,64 +192,6 @@
       "tag": "other",
       "type": "selector",
       "outbounds": []
-    },
-    {
-      "tag": "hk-auto",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
-      "tolerance": 50
-    },
-    {
-      "tag": "tw-auto",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
-      "tolerance": 50
-    },
-    {
-      "tag": "jp-auto",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
-      "tolerance": 50
-    },
-    {
-      "tag": "sg-auto",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
-      "tolerance": 50
-    },
-    {
-      "tag": "kr-auto",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
-      "tolerance": 50
-    },
-    {
-      "tag": "us-auto",
-      "type": "urltest",
-      "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
-      "tolerance": 50
-    },
-    {
-      "tag": "cn-auto",
-      "type": "urltest",
-      "outbounds": [
-        "direct"
-      ],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
-      "tolerance": 50
     },
     {
       "tag": "direct",
