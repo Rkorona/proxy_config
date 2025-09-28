@@ -194,6 +194,15 @@
       "outbounds": []
     },
     {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "interrupt_exist_connections": false
+    },
+    {
       "tag": "direct",
       "type": "direct"
     }

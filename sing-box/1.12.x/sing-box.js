@@ -45,6 +45,9 @@ config.outbounds.map(i => {
   if (['other'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /^(?:(?!港|hk|hongkong|kong kong|台|tw|taiwan|日本|jp|japan|新|sg|singapore|韩|kr|korea|美|us|unitedstates|united states|徐州|武汉|镇江|济南|🇭🇰|🇯🇵|🇸🇬|🇼🇸|🇰🇷|🇺🇲|🇨🇳).)*$/i))
   }
+  if (['auto'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies))
+  }
 })
 
 config.outbounds.forEach(outbound => {
