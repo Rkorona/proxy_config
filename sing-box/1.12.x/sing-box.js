@@ -16,36 +16,31 @@ let proxies = await produceArtifact({
 config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
-  /**
-  if (['all', 'all-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies))
+  if (['hongkong'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /香港|hk|hongkong|🇭🇰/i))
   }
-  **/
-  if (['hk', 'hk-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /港|hk|hongkong|kong kong|🇭🇰/i))
+  if (['taiwan'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /台湾|tw|taiwan|🇼🇸/i))
   }
-  if (['tw', 'tw-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /台|tw|taiwan|🇼🇸/i))
-  }
-  if (['jp', 'jp-auto'].includes(i.tag)) {
+  if (['japan'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /日本|jp|japan|🇯🇵/i))
   }
-  if (['sg', 'sg-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新|sg|singapore|🇸🇬)/i))
+  if (['singapore'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新加坡|sg|singapore|🇸🇬)/i))
   }
-  if (['kr', 'kr-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /韩|kr|korea|🇰🇷/i))
+  if (['korea'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /韩国|kr|korea|🇰🇷/i))
   }
-  if (['us', 'us-auto'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /美|us|unitedstates|america|🇺🇸/i))
+  if (['america'].includes(i.tag)) {
+    i.outbounds.push(...getTags(proxies, /美国|us|america|🇺🇸/i))
   }
-  if (['cn', 'cn-auto'].includes(i.tag)) {
+  if (['cn'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /徐州|武汉|镇江|济南|🇨🇳/i))
   }
   if (['other'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /^(?:(?!港|hk|hongkong|kong kong|台|tw|taiwan|日本|jp|japan|新|sg|singapore|韩|kr|korea|美|us|unitedstates|united states|徐州|武汉|镇江|济南|🇭🇰|🇯🇵|🇸🇬|🇼🇸|🇰🇷|🇺🇲|🇨🇳).)*$/i))
+    i.outbounds.push(...getTags(proxies, /^(?:(?!香港|hk|hongkong|台湾|tw|taiwan|日本|jp|japan|新加坡|sg|singapore|韩国|kr|korea|美国|us|america|徐州|武汉|镇江|济南|🇭🇰|🇯🇵|🇸🇬|🇼🇸|🇰🇷|🇺🇲|🇨🇳).)*$/i))
   }
-  if (['auto'].includes(i.tag)) {
+  if (['all'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
 })

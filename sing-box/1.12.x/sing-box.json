@@ -90,15 +90,14 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "kr",
-        "us",
+        "hongkong",
+        "taiwan",
+        "japan",
+        "singapore",
+        "korea",
+        "america",
         "cn",
-        "other",
-        "direct"
+        "other"
       ]
     },
     {
@@ -106,15 +105,14 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "kr",
-        "us",
+        "hongkong",
+        "taiwan",
+        "japan",
+        "singapore",
+        "korea",
+        "america",
         "cn",
-        "other",
-        "direct"
+        "other"
       ]
     },
     {
@@ -122,12 +120,12 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "kr",
-        "us",
+        "hongkong",
+        "taiwan",
+        "japan",
+        "singapore",
+        "korea",
+        "america",
         "cn",
         "other",
         "direct"
@@ -138,46 +136,46 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hk",
-        "tw",
-        "jp",
-        "sg",
-        "kr",
-        "us",
+        "hongkong",
+        "taiwan",
+        "japan",
+        "singapore",
+        "korea",
+        "america",
         "cn",
         "other",
         "direct"
       ]
     },
     {
-      "tag": "hk",
+      "tag": "hongkong",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "tw",
+      "tag": "taiwan",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "jp",
+      "tag": "japan",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "sg",
+      "tag": "singapore",
       "type": "selector",
       "outbounds": []
     },
     {
-      "tag": "kr",
+      "tag": "korea",
       "type": "selector",
       "outbounds": [
         "direct"
       ]
     },
     {
-      "tag": "us",
+      "tag": "america",
       "type": "selector",
       "outbounds": []
     },
@@ -195,12 +193,12 @@
     },
     {
       "type": "urltest",
-      "tag": "auto",
+      "tag": "all",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
+      "interval": "30m",
       "tolerance": 50,
-      "interrupt_exist_connections": false
+      "interrupt_exist_connections": true
     },
     {
       "tag": "direct",
