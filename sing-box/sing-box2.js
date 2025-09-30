@@ -32,7 +32,9 @@ const rules = {
   'korea': /韩国|kr|korea|🇰🇷/i,
   'america': /美国|us|america|🇺🇸/i,
   'cn': /徐州|武汉|镇江|济南|🇨🇳/i,
-  'other': /^(?:(?!香港|hk|hongkong|台湾|tw|taiwan|日本|jp|japan|新加坡|sg|singapore|韩国|kr|korea|美国|us|america|徐州|武汉|镇江|济南|🇭🇰|🇯🇵|🇸🇬|🇼🇸|🇰🇷|🇺🇲|🇨🇳).)*$/i,
+  'netcup': /netcup|NETCUP|Netcup|N/i,
+  'hostdzire': /hostdzire|HOSTDZIRE|Hostdzire|H/i,
+  'other': /^(?:(?!香港|hk|hongkong|台湾|tw|taiwan|日本|jp|japan|新加坡|sg|singapore|韩国|kr|korea|美国|us|america|hostdzire|HOSTDZIRE|Hostdzire|H|netcup|NETCUP|Netcup|N|徐州|武汉|镇江|济南|🇭🇰|🇯🇵|🇸🇬|🇼🇸|🇰🇷|🇺🇲|🇨🇳).)*$/i,
   'all': /.*/i // 匹配所有节点
 };
 
