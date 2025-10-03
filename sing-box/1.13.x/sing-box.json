@@ -177,9 +177,7 @@
     {
       "tag": "korea",
       "type": "selector",
-      "outbounds": [
-        "direct"
-      ]
+      "outbounds": []
     },
     {
       "tag": "america",
@@ -271,21 +269,12 @@
         "outbound": "Github"
       },
       {
-        "action": "resolve"
-      },
-      {
-        "rule_set": [
-          "google_ip",
-          "google_domain"
-        ],
+        "rule_set": "google_domain",
         "action": "route",
         "outbound": "Google"
       },
       {
-        "rule_set": [
-          "cn_ip",
-          "cn_domain"
-        ],
+        "rule_set": "cn_domain",
         "action": "route",
         "outbound": "China"
       },
@@ -293,6 +282,19 @@
         "rule_set": "proxy_domain",
         "action": "route",
         "outbound": "Proxy"
+      },
+      {
+        "action": "resolve"
+      },
+      {
+        "rule_set": "google_ip",
+        "action": "route",
+        "outbound": "Google"
+      },
+      {
+        "rule_set": "cn_ip",
+        "action": "route",
+        "outbound": "China"
       }
     ],
     "final": "Proxy",
