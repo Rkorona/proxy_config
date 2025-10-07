@@ -62,9 +62,12 @@ dns:
     - 'https://cloudflare-dns.com/dns-query#h3=true'
     - 'https://dns.google/dns-query#h3=true'
   nameserver-policy:
-    geosite:cn: 
+    "geosite:cn,private":
       - 'https://dns.pub/dns-query#h3=true'
       - 'https://dns.alidns.com/dns-query#h3=true'
+    "geosite:geolocation-!cn":
+    - 'https://cloudflare-dns.com/dns-query#h3=true'
+    - 'https://dns.google/dns-query#h3=true'
 tun:
   enable: true
   stack: mixed
@@ -100,9 +103,6 @@ select: &select
 proxies:
   - name: "dns-out"
     type: dns
- # - name: "DIRECT"
-   # type: direct
-   # udp: true
 
 proxy-groups:
   - name: Proxy
@@ -111,12 +111,6 @@ proxy-groups:
   - name: Google
     <<: *select
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png"
-  - name: YouTube
-    <<: *select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png"
-  - name: Spotify
-    <<: *select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png"
   - name: GitHub
     <<: *select
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png"
@@ -166,7 +160,7 @@ proxy-groups:
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
     include-all: true
     filter: "(?i)(🇨🇳|徐|广|浙|镇|武|济)"
-
+    
   - name: Other
     type: select
     #<<: *u
@@ -180,8 +174,6 @@ rules:
   # - DST-PORT,53,dns-out
   # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # 禁用quic(不包括国内)
   - RULE-SET,github,GitHub
-  - RULE-SET,youtube,YouTube
-  - RULE-SET,spotify,Spotify
   - RULE-SET,google,Google
   - RULE-SET,google_ip,Google
   - RULE-SET,geolocation-!cn,Proxy
@@ -223,12 +215,6 @@ rule-providers:
   github:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.yaml"
-  spotify:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.yaml"
-  youtube:
-    <<: *domain
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.yaml"
   geolocation-!cn:
     <<: *domain
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.yaml"
