@@ -98,66 +98,69 @@ url-test: &url-test
 
 select: &select
   type: select
-  proxies: [Hongkong, Japan, Singapore, Taiwan, Korea, America, CN, Other, DIRECT]
+  proxies: [HongKong, Japan, Singapore, Taiwan, America, Netcup, Hostdzire, CN, Other, DIRECT]
 
 proxies:
-  - name: "dns-out"
-    type: dns
-
 proxy-groups:
   - name: Proxy
     <<: *select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png"
+    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/akkcloud.png"
   - name: Google
     <<: *select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png"
   - name: GitHub
     <<: *select
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png"
   - name: China
     <<: *select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/China.png"
 
   # 地区
-  - name: Hongkong
+  - name: HongKong
     <<: *url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png"
     include-all: true
     filter: "(?i)(🇭🇰|香港|hk|HK|HongKong|Hong Kong)"
 
   - name: Japan
     <<: *url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png"
     include-all: true
     filter: "(?i)(🇯🇵|日本|jp|JP|Japan)"
 
   - name: Singapore
     <<: *url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png"
     include-all: true
     filter: "(?i)(🇸🇬|新加坡|狮城|sg|SG|Singapore)"
 
   - name: Taiwan
     <<: *url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png"
     include-all: true
     filter: "(?i)(🇼🇸|台湾|tw|TW|Taiwan)"
 
-  - name: Korea
-    <<: *url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png"
-    include-all: true
-    filter: "(?i)(🇰🇷|韩国|KR|Korea)"
-
   - name: America
     <<: *url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png"
     include-all: true
     filter: "(?i)(🇺🇲|美国|USA|America|United States)"
-    
+
+  - name: Netcup
+    type: select
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/UN.png"
+    include-all: true
+    filter: "(?i)(N)"
+
+  - name: Hostdzire
+    type: select
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/XD.png"
+    include-all: true
+    filter: "(?i)(H)"
+  
   - name: CN
     <<: *url-test
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png"
+    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/CN.png"
     include-all: true
     filter: "(?i)(🇨🇳|徐|广|浙|镇|武|济)"
     
@@ -166,7 +169,7 @@ proxy-groups:
     #<<: *u
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
     include-all: true
-    filter: "(?i)^(?!.*(?:港|HK|HongKong|Hong Kong|台|TW|日|JP|新|SG|韩|KR|美|United States|US|徐|广|浙|镇|武|济|直连|dns-out)).*"
+    filter: "(?i)^(?!.*(?:香港|HK|hk|HongKong|台湾|TW|tw|taiwan|日|JP|新|SG|美|america|US|N|H|徐|广|浙|镇|武|济)).*"
 
 # 规则
 rules:
