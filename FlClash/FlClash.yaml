@@ -80,7 +80,7 @@ tun:
   auto-detect-interface: true
 
 proxy-providers:
-  ZGJ:
+  netcup: 
     url: ""
     type: http
     interval: 25200
