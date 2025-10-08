@@ -50,8 +50,6 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   default-nameserver:
-    - tls://1.12.12.12
-    - 119.29.29.29
     - 120.53.53.53
     - 114.114.114.114
     - 223.5.5.5
@@ -66,8 +64,8 @@ dns:
       - 'https://dns.pub/dns-query#h3=true'
       - 'https://dns.alidns.com/dns-query#h3=true'
     "geosite:geolocation-!cn":
-    - 'https://cloudflare-dns.com/dns-query#h3=true'
-    - 'https://dns.google/dns-query#h3=true'
+      - 'https://cloudflare-dns.com/dns-query#h3=true'
+      - 'https://dns.google/dns-query#h3=true'
 tun:
   enable: true
   stack: mixed
@@ -83,10 +81,11 @@ proxy-providers:
   netcup:
     url: ""
     type: http
-    interval: 25200
+    interval: 21600
+    proxy: DIRECT
     health-check:
       enable: true
-      interval: 300
+      interval: 1800
       url: "https://www.gstatic.com/generate_204"
 
 url-test: &url-test
@@ -166,16 +165,19 @@ proxy-groups:
     
   - name: Other
     type: select
-    #<<: *u
     icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
     include-all: true
     filter: "(?i)^(?!.*(?:香港|HK|hk|HongKong|台湾|TW|tw|taiwan|日|JP|新|SG|美|america|US|N|H|徐|广|浙|镇|武|济)).*"
 
+  - name: All
+    <<: *url-test
+    icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Lray.png"
+    include-all: true
+  
 # 规则
 rules:
   - RULE-SET,Advertising_Domain,REJECT
-  # - DST-PORT,53,dns-out
-  # - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # 禁用quic(不包括国内)
+  - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # 禁用quic(不包括国内)
   - RULE-SET,github,GitHub
   - RULE-SET,google,Google
   - RULE-SET,google_ip,Google
