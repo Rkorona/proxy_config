@@ -180,14 +180,14 @@ rules:
   - AND,(AND,(DST-PORT,443),(NETWORK,UDP)),(NOT,((GEOSITE,cn))),REJECT # 禁用quic(不包括国内)
   - RULE-SET,github,GitHub
   - RULE-SET,google,Google
-  - RULE-SET,google_ip,Google
+  - RULE-SET,google_ip,Google,no-resolve
   - RULE-SET,geolocation-!cn,Proxy
   - RULE-SET,ChinaMax_Domain,China
-  - RULE-SET,ChinaMax_IP,China
+  - RULE-SET,ChinaMax_IP,China,no-resolve
   - RULE-SET,private,China,no-resolve
   
   - GEOSITE,CN,China
-  - GEOIP,CN,China
+  - GEOIP,CN,China,no-resolve
   - MATCH,Proxy
 
 rule-anchor:
