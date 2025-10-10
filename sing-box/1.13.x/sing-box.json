@@ -8,15 +8,13 @@
     "servers": [
       {
         "tag": "cf",
-        "type": "https",
-        "server": "1.1.1.1",
-        "detour": "Proxy"
+        "type": "tls",
+        "server": "1.1.1.1"
       },
       {
         "tag": "ali",
-        "type": "https",
-        "server": "223.5.5.5",
-        "detour": "cn"
+        "type": "tls",
+        "server": "223.5.5.5"
       },
       {
         "tag": "fakeip",
@@ -35,10 +33,6 @@
         "clash_mode": "Global",
         "action": "route",
         "server": "fakeip"
-      },
-      {
-        "query_type": "HTTPS",
-        "action": "reject"
       },
       {
         "query_type": [
