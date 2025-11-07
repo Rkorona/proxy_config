@@ -109,8 +109,8 @@ url-test: &url-test
 
 select: &select
   type: select
-  proxies: [HongKong, Japan, Singapore, Taiwan, America, Netcup, Hostdzire, CN, Other, DIRECT]
-
+  # proxies: [HongKong, Japan, Singapore, Taiwan, America, Netcup, Hostdzire, CN, Other, DIRECT]
+  proxies: [Netcup, Hostdzire, DIRECT]
 proxies:
 proxy-groups:
   - name: Proxy
@@ -128,34 +128,34 @@ proxy-groups:
 
   # 地区
   # - name: HongKong
-    <<: *url-test
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png"
-    include-all: true
-    filter: "(?i)(🇭🇰|香港|hk|HK|HongKong|Hong Kong)"
+  #   <<: *url-test
+  #   icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png"
+  #   include-all: true
+  #   filter: "(?i)(🇭🇰|香港|hk|HK|HongKong|Hong Kong)"
 
-  - name: Japan
-    <<: *url-test
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png"
-    include-all: true
-    filter: "(?i)(🇯🇵|日本|jp|JP|Japan)"
+  # - name: Japan
+  #   <<: *url-test
+  #   icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png"
+  #   include-all: true
+  #   filter: "(?i)(🇯🇵|日本|jp|JP|Japan)"
 
-  - name: Singapore
-    <<: *url-test
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png"
-    include-all: true
-    filter: "(?i)(🇸🇬|新加坡|狮城|sg|SG|Singapore)"
+  # - name: Singapore
+  #   <<: *url-test
+  #   icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png"
+  #   include-all: true
+  #   filter: "(?i)(🇸🇬|新加坡|狮城|sg|SG|Singapore)"
 
-  - name: Taiwan
-    <<: *url-test
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png"
-    include-all: true
-    filter: "(?i)(🇼🇸|台湾|tw|TW|Taiwan)"
+  # - name: Taiwan
+  #   <<: *url-test
+  #   icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png"
+  #   include-all: true
+  #   filter: "(?i)(🇼🇸|台湾|tw|TW|Taiwan)"
 
-  - name: America
-    <<: *url-test
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png"
-    include-all: true
-    filter: "(?i)(🇺🇲|美国|USA|America|United States)"
+  # - name: America
+  #   <<: *url-test
+  #   icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png"
+  #   include-all: true
+  #   filter: "(?i)(🇺🇲|美国|USA|America|United States)"
 
   - name: Netcup
     type: select
@@ -169,17 +169,17 @@ proxy-groups:
     include-all: true
     filter: "(?i)(H)"
   
-  - name: CN
-    <<: *url-test
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/CN.png"
-    include-all: true
-    filter: "(?i)(🇨🇳|徐|广|浙|镇|武|济)"
+  # - name: CN
+  #   <<: *url-test
+  #   icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/CN.png"
+  #   include-all: true
+  #   filter: "(?i)(🇨🇳|徐|广|浙|镇|武|济)"
     
-  - name: Other
-    type: select
-    icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
-    include-all: true
-    filter: "(?i)^(?!.*(?:香港|HK|hk|HongKong|台湾|TW|tw|taiwan|日|JP|新|SG|美|america|US|N|H|徐|广|浙|镇|武|济)).*"
+  # - name: Other
+  #   type: select
+  #   icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
+  #   include-all: true
+  #   filter: "(?i)^(?!.*(?:香港|HK|hk|HongKong|台湾|TW|tw|taiwan|日|JP|新|SG|美|america|US|N|H|徐|广|浙|镇|武|济)).*"
 
   - name: All
     <<: *url-test
