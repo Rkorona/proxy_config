@@ -110,7 +110,7 @@ url-test: &url-test
 select: &select
   type: select
   # proxies: [HongKong, Japan, Singapore, Taiwan, America, Netcup, Hostdzire, CN, Other, DIRECT]
-  proxies: [Netcup, Hostdzire, DIRECT]
+  proxies: [Hostdzire, DIRECT, All]
 proxies:
 proxy-groups:
   - name: Proxy
@@ -157,24 +157,24 @@ proxy-groups:
   #   include-all: true
   #   filter: "(?i)(🇺🇲|美国|USA|America|United States)"
 
-  - name: Netcup
-    type: select
-    icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/UN.png"
-    include-all: true
-    filter: "(?i)(N)"
+  # - name: Netcup
+  #   type: select
+  #   icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/UN.png"
+  #   include-all: true
+  #   filter: "(?i)(N)"
 
   - name: Hostdzire
     type: select
     icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/XD.png"
     include-all: true
     filter: "(?i)(H)"
-  
+
   # - name: CN
   #   <<: *url-test
   #   icon: "https://raw.githubusercontent.com/Orz-3/mini/master/Color/CN.png"
   #   include-all: true
   #   filter: "(?i)(🇨🇳|徐|广|浙|镇|武|济)"
-    
+
   # - name: Other
   #   type: select
   #   icon: "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png"
@@ -185,7 +185,7 @@ proxy-groups:
     <<: *url-test
     icon: "https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Lray.png"
     include-all: true
-  
+
 # 规则
 rules:
   - RULE-SET,Advertising_Domain,REJECT
@@ -197,7 +197,7 @@ rules:
   - RULE-SET,ChinaMax_Domain,China
   - RULE-SET,ChinaMax_IP,China,no-resolve
   - RULE-SET,private,China,no-resolve
-  
+
   - GEOSITE,CN,China
   - GEOIP,CN,China,no-resolve
   - MATCH,Proxy
@@ -241,4 +241,3 @@ rule-providers:
   google_ip:
     <<: *ip
     url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.yaml"
-
