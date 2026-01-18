@@ -14,7 +14,7 @@ const direct_outbound = {
 
 let config = JSON.parse($files[0])
 let proxies = await produceArtifact({
-  name: '组合订阅',
+  name: 'Netcup_Hostdzire',
   type: 'collection',
   platform: 'sing-box',
   produceType: 'internal',

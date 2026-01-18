@@ -72,7 +72,8 @@
         }
       }
     },
-    { "tag": "mixed-in",
+    {
+      "tag": "mixed-in",
       "type": "mixed",
       "listen": "127.0.0.1",
       "listen_port": 7790
@@ -84,9 +85,9 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "netcup",
         "hostdzire",
-        "direct"
+        "direct",
+        "all"
       ]
     },
     {
@@ -94,9 +95,9 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "netcup",
         "hostdzire",
-        "direct"
+        "direct",
+        "all"
       ]
     },
     {
@@ -104,9 +105,9 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "netcup",
         "hostdzire",
-        "direct"
+        "direct",
+        "all"
       ]
     },
     {
@@ -114,15 +115,10 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "netcup",
         "hostdzire",
-        "direct"
+        "direct",
+        "all"
       ]
-    },
-    {
-      "tag": "netcup",
-      "type": "selector",
-      "outbounds": []
     },
     {
       "tag": "hostdzire",
@@ -149,7 +145,10 @@
     },
     "rules": [
       {
-        "inbound": ["tun-in", "mixed-in"],
+        "inbound": [
+          "tun-in",
+          "mixed-in"
+        ],
         "action": "sniff"
       },
       {
