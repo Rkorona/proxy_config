@@ -93,7 +93,6 @@
         "america",
         "cn",
         "hostdzire",
-        "netcup",
         "other"
       ]
     },
@@ -110,7 +109,6 @@
         "america",
         "cn",
         "hostdzire",
-        "netcup",
         "other"
       ]
     },
@@ -127,7 +125,6 @@
         "america",
         "cn",
         "hostdzire",
-        "netcup",
         "other"
       ]
     },
@@ -144,9 +141,7 @@
         "america",
         "cn",
         "hostdzire",
-        "netcup",
-        "other",
-        "direct"
+        "other"
       ]
     },
     {
@@ -185,11 +180,6 @@
       "outbounds": [
         "direct"
       ]
-    },
-    {
-      "tag": "netcup",
-      "type": "selector",
-      "outbounds": []
     },
     {
       "tag": "hostdzire",

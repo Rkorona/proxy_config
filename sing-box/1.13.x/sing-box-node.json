@@ -123,15 +123,13 @@
     {
       "tag": "hostdzire",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
-      "type": "urltest",
+      "type": "selector",
       "tag": "all",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
-      "tolerance": 50,
       "interrupt_exist_connections": true
     },
     {
