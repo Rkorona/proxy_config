@@ -147,49 +147,58 @@
     {
       "tag": "hongkong",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "taiwan",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "japan",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "singapore",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "korea",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "america",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "cn",
       "type": "selector",
       "outbounds": [
         "direct"
-      ]
+      ],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "hostdzire",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
       "tag": "other",
       "type": "selector",
-      "outbounds": []
+      "outbounds": [],
+      "interrupt_exist_connections": true
     },
     {
       "type": "urltest",

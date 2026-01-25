@@ -1,62 +1,105 @@
-const { type, name } = $arguments
-const compatible_outbound = {
-  tag: 'COMPATIBLE',
-  type: 'direct',
-}
+// const { type, name } = $arguments
 
-let compatible
+// ==================== 备用节点 ====================
+const COMPATIBLE = { tag: 'COMPATIBLE', type: 'direct' }
+const DIRECT = { tag: 'DIRECT', type: 'direct' }
+
+// ==================== 读取配置 ====================
 let config = JSON.parse($files[0])
+
+// ==================== 获取代理节点 ====================
 let proxies = await produceArtifact({
-  name: '组合订阅',
-  type: 'collection', // /^1$|col/i.test(type) ? 'collection' : 'subscription',
+  name: 'Netcup_Hostdzire',
+  type: 'collection',
   platform: 'sing-box',
   produceType: 'internal',
 })
 
+// 加入节点
 config.outbounds.push(...proxies)
 
-config.outbounds.map(i => {
-  if (['hongkong'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /香港|hk|hongkong|🇭🇰/i))
+// ==================== 分组规则 ====================
+// ⚠️ 注意：all 不参与 matched 统计
+const rules = {
+  hongkong: /香港|hk|hongkong|🇭🇰/i,
+  taiwan: /台湾|tw|taiwan|🇼🇸/i,
+  japan: /日本|jp|japan|🇯🇵/i,
+  singapore: /新加坡|sg|singapore|🇸🇬/i,
+  korea: /韩国|kr|korea|🇰🇷/i,
+  america: /美国|us|america|🇺🇸/i,
+  cn: /徐州|武汉|镇江|济南|🇨🇳/i,
+  hostdzire: /hostdzire|hd/i,
+  all: /.*/i,
+}
+
+// ==================== 工具函数 ====================
+function getTags(list, regex) {
+  return list.filter(p => regex.test(p.tag)).map(p => p.tag)
+}
+
+function ensureOutbound(outbound) {
+  if (!config.outbounds.some(o => o.tag === outbound.tag)) {
+    config.outbounds.push(outbound)
   }
-  if (['taiwan'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /台湾|tw|taiwan|🇼🇸/i))
-  }
-  if (['japan'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /日本|jp|japan|🇯🇵/i))
-  }
-  if (['singapore'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /^(?!.*(?:us)).*(新加坡|sg|singapore|🇸🇬)/i))
-  }
-  if (['korea'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /韩国|kr|korea|🇰🇷/i))
-  }
-  if (['america'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /美国|us|america|🇺🇸/i))
-  }
-  if (['cn'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /徐州|武汉|镇江|济南|🇨🇳/i))
-  }
-  if (['other'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /^(?:(?!香港|hk|hongkong|台湾|tw|taiwan|日本|jp|japan|新加坡|sg|singapore|韩国|kr|korea|美国|us|america|徐州|武汉|镇江|济南|🇭🇰|🇯🇵|🇸🇬|🇼🇸|🇰🇷|🇺🇲|🇨🇳).)*$/i))
-  }
-  if (['all'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies))
-  }
+}
+
+// ==================== 只处理策略组 ====================
+const policyGroups = config.outbounds.filter(
+  o => Array.isArray(o.outbounds)
+)
+
+// ==================== 规则匹配（不含 all） ====================
+const matchedTags = new Set()
+
+policyGroups.forEach(group => {
+  const regex = rules[group.tag]
+  if (!regex || group.tag === 'all') return
+
+  const tags = getTags(proxies, regex)
+
+  const set = new Set(group.outbounds)
+  tags.forEach(t => {
+    set.add(t)
+    matchedTags.add(t)
+  })
+
+  group.outbounds = [...set]
 })
 
-config.outbounds.forEach(outbound => {
-  if (Array.isArray(outbound.outbounds) && outbound.outbounds.length === 0) {
-    if (!compatible) {
-      config.outbounds.push(compatible_outbound)
-      compatible = true
-    }
-    outbound.outbounds.push(compatible_outbound.tag);
-  }
-});
-
-$content = JSON.stringify(config, null, 2)
-
-function getTags(proxies, regex) {
-  return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag)
+// ==================== all 组（全部节点） ====================
+const allGroup = policyGroups.find(g => g.tag === 'all')
+if (allGroup) {
+  const set = new Set(allGroup.outbounds)
+  proxies.forEach(p => set.add(p.tag))
+  allGroup.outbounds = [...set]
 }
+
+// ==================== other 组（未命中地区规则的节点） ====================
+const otherGroup = policyGroups.find(g => g.tag === 'other')
+if (otherGroup) {
+  const otherTags = proxies
+    .map(p => p.tag)
+    .filter(t => !matchedTags.has(t))
+
+  const set = new Set(otherGroup.outbounds)
+  otherTags.forEach(t => set.add(t))
+  otherGroup.outbounds = [...set]
+}
+
+// ==================== UI 友好兜底 ====================
+policyGroups.forEach(group => {
+  const set = new Set(group.outbounds)
+
+  if (set.size === 0) {
+    ensureOutbound(COMPATIBLE)
+    set.add(COMPATIBLE.tag)
+  } else if (set.size === 1) {
+    ensureOutbound(DIRECT)
+    set.add(DIRECT.tag)
+  }
+
+  group.outbounds = [...set]
+})
+
+// ==================== 输出 ====================
+$content = JSON.stringify(config, null, 2)
