@@ -9,7 +9,7 @@ let clashMetaProxies = await produceArtifact({
 **/
 
 // 使用方括号 [] 来访问带中划线的属性名
-yaml['proxy-providers'].netcup.url = ""
+yaml['proxy-providers'].free.url = ""
 
 //yaml.proxies.unshift(...clashMetaProxies)
 $content = ProxyUtils.yaml.dump(yaml)
