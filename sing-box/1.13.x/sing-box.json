@@ -114,7 +114,39 @@
       ]
     },
     {
-      "tag": "Github",
+      "tag": "GitHub",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "hongkong",
+        "taiwan",
+        "japan",
+        "singapore",
+        "korea",
+        "america",
+        "cn",
+        "hostdzire",
+        "other"
+      ]
+    },
+    {
+      "tag": "OpenAI",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "hongkong",
+        "taiwan",
+        "japan",
+        "singapore",
+        "korea",
+        "america",
+        "cn",
+        "hostdzire",
+        "other"
+      ]
+    },
+    {
+      "tag": "Spotify",
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
@@ -239,7 +271,6 @@
       "tag": "direct",
       "type": "direct"
     },
-
     {
       "tag": "reject",
       "type": "http"
@@ -293,7 +324,17 @@
       {
         "rule_set": "github_domain",
         "action": "route",
-        "outbound": "Github"
+        "outbound": "GitHub"
+      },
+      {
+        "rule_set": "openai_domain",
+        "action": "route",
+        "outbound": "OpenAI"
+      },
+      {
+        "rule_set": "spotify_domain",
+        "action": "route",
+        "outbound": "Spotify"
       },
       {
         "rule_set": "cn_domain",
@@ -328,17 +369,31 @@
     "auto_detect_interface": true,
     "rule_set": [
       {
+        "tag": "openai_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/OpenAI/OpenAI.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "spotify_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Spotify/Spotify.srs",
+        "download_detour": "direct"
+      },
+      {
         "tag": "cn_ip",
         "type": "remote",
         "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geoip/cn.srs",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaIPs/ChinaIPs.srs",
         "download_detour": "direct"
       },
       {
         "tag": "cn_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/cn.srs",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaMaxNoIP/ChinaMaxNoIP.srs",
         "download_detour": "direct"
       },
       {
@@ -352,28 +407,28 @@
         "tag": "google_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/google.srs",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Google/Google.srs",
         "download_detour": "direct"
       },
       {
         "tag": "proxy_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo/geosite/geolocation-!cn.srs",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Proxy/Proxy.srs",
         "download_detour": "direct"
       },
       {
         "tag": "github_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geosite/github.srs",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/GitHub/GitHub.srs",
         "download_detour": "direct"
       },
       {
         "tag": "Advertising_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Advertising/Advertising.srs",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Advertising/Advertising.srs",
         "download_detour": "direct"
       }
     ]
