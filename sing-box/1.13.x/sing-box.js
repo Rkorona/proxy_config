@@ -1,9 +1,12 @@
 // const { type, name } = $arguments
 
 // ==================== 备用节点 ====================
-const COMPATIBLE = { tag: 'COMPATIBLE', type: 'direct' }
+const COMPATIBLE = { tag: 'COMPATIBLE', type: 'http' }
 const DIRECT = { tag: 'DIRECT', type: 'direct' }
-
+const REJECT = {
+  tag: 'REJECT',
+  type: 'http'
+}
 // ==================== 读取配置 ====================
 let config = JSON.parse($files[0])
 
@@ -87,6 +90,7 @@ if (otherGroup) {
 }
 
 // ==================== UI 友好兜底 ====================
+
 policyGroups.forEach(group => {
   const set = new Set(group.outbounds)
 
@@ -94,8 +98,8 @@ policyGroups.forEach(group => {
     ensureOutbound(COMPATIBLE)
     set.add(COMPATIBLE.tag)
   } else if (set.size === 1) {
-    ensureOutbound(DIRECT)
-    set.add(DIRECT.tag)
+    ensureOutbound(REJECT)
+    set.add(REJECT.tag)
   }
 
   group.outbounds = [...set]

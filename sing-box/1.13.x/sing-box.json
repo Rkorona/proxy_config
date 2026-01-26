@@ -8,12 +8,13 @@
     "servers": [
       {
         "tag": "cf",
-        "type": "tls",
-        "server": "1.1.1.1"
+        "type": "https",
+        "server": "1.1.1.1",
+        "detour": "Proxy"
       },
       {
         "tag": "ali",
-        "type": "tls",
+        "type": "https",
         "server": "223.5.5.5"
       },
       {
@@ -35,6 +36,11 @@
         "server": "fakeip"
       },
       {
+        "rule_set": "cn_domain",
+        "action": "route",
+        "server": "ali"
+      },
+      {
         "query_type": [
           "A",
           "AAAA"
@@ -42,11 +48,6 @@
         "action": "route",
         "server": "fakeip",
         "rewrite_ttl": 1
-      },
-      {
-        "rule_set": "cn_domain",
-        "action": "route",
-        "server": "ali"
       }
     ],
     "final": "cf",
@@ -146,38 +147,62 @@
     },
     {
       "tag": "hongkong",
-      "type": "selector",
+      "type": "urltest",
       "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
       "tag": "taiwan",
-      "type": "selector",
+      "type": "urltest",
       "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
       "tag": "japan",
-      "type": "selector",
+      "type": "urltest",
       "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
       "tag": "singapore",
-      "type": "selector",
+      "type": "urltest",
       "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
       "tag": "korea",
-      "type": "selector",
+      "type": "urltest",
       "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
       "tag": "america",
-      "type": "selector",
+      "type": "urltest",
       "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
@@ -201,17 +226,23 @@
       "interrupt_exist_connections": true
     },
     {
-      "type": "urltest",
       "tag": "all",
+      "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "30m",
+      "interval": "60m",
       "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
       "tag": "direct",
       "type": "direct"
+    },
+
+    {
+      "tag": "reject",
+      "type": "http"
     }
   ],
   "route": {
@@ -225,12 +256,6 @@
           "mixed-in"
         ],
         "action": "sniff"
-      },
-      {
-        "rule_set": "Advertising_domain",
-        "action": "reject",
-        "method": "default",
-        "no_drop": false
       },
       {
         "type": "logical",
@@ -261,14 +286,14 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "github_domain",
-        "action": "route",
-        "outbound": "Github"
-      },
-      {
         "rule_set": "google_domain",
         "action": "route",
         "outbound": "Google"
+      },
+      {
+        "rule_set": "github_domain",
+        "action": "route",
+        "outbound": "Github"
       },
       {
         "rule_set": "cn_domain",
@@ -279,6 +304,10 @@
         "rule_set": "proxy_domain",
         "action": "route",
         "outbound": "Proxy"
+      },
+      {
+        "rule_set": "Advertising_domain",
+        "action": "reject"
       },
       {
         "action": "resolve"
