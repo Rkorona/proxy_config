@@ -1,5 +1,5 @@
-# ==================== 锚点配置 ====================
-# 代理提供者模板 - 订阅源基础配置
+# 锚点配置
+# 代理提供者模板
 BaseProvider:
   &BaseProvider {
     type: http,
@@ -9,23 +9,23 @@ BaseProvider:
       {
         enable: true,
         url: "https://www.google.com/generate_204",
-        interval: 300,
+        interval: 1800,
       },
     filter: "^(?!.*(群|邀请|超时|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author))",
   }
 
-# 策略组类型模板 - 定义不同的策略组基础配置
+# 策略组类型模板
 BaseFB:
   &BaseFB {
     type: fallback,
-    interval: 200,
+    interval: 1800,
     lazy: true,
     url: "https://www.google.com/generate_204",
   }
 BaseCH:
   &BaseCH {
     type: load-balance,
-    interval: 200,
+    interval: 1800,
     lazy: true,
     url: "https://www.google.com/generate_204",
     strategy: consistent-hashing,
@@ -34,7 +34,7 @@ BaseCH:
 BaseCR:
   &BaseCR {
     type: load-balance,
-    interval: 200,
+    interval: 1800,
     lazy: true,
     url: "https://www.google.com/generate_204",
     strategy: round-robin,
@@ -43,7 +43,7 @@ BaseCR:
 BaseUT:
   &BaseUT {
     type: url-test,
-    interval: 200,
+    interval: 1800,
     lazy: true,
     url: "https://www.google.com/generate_204",
     hidden: true,
@@ -51,14 +51,14 @@ BaseUT:
 BaseSmart:
   &BaseSmart {
     type: smart,
-    interval: 200,
+    interval: 1800,
     lazy: true,
     url: "https://www.google.com/generate_204",
     hidden: true,
     uselightgbm: true,
   }
 
-# 节点筛选正则表达式 - 基于地理位置和关键词过滤
+# 节点筛选正则表达式
 FilterHK: &FilterHK "^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG))(?!.*(排除1|排除2|5x)).*$"
 FilterSG: &FilterSG "^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|XSP))(?!.*(排除1|排除2|5x)).*$"
 FilterJP: &FilterJP "^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK))(?!.*(尼日利亚|排除2|5x)).*$"
@@ -185,33 +185,11 @@ SelectUS:
       ],
   }
 
-# ==================== 代理提供者 ====================
+# 代理提供者
 proxy-providers:
   FREE: { <<: *BaseProvider, url: "" }
 
-# ==================== 监听器 ====================
-listeners:
-  # Shadowsocks监听器 - 代理节点 玩法：远程连接家庭网络，端口和密码，使用时请修改
-  - {
-      name: SS-IN,
-      type: shadowsocks,
-      listen: "::",
-      port: 10000,
-      udp: true,
-      password: Xf3#Lp9WqZ,
-      cipher: aes-256-gcm,
-    }
-  # Mixed监听器 - 分地区专用端口 玩法：本地浏览器插件或手机APP配置代理，实现分地区访问
-  - { name: MIXED-SG, type: mixed, port: 50000, proxy: 狮城策略 }
-  - { name: MIXED-US, type: mixed, port: 50001, proxy: 美国策略 }
-  - { name: MIXED-TW, type: mixed, port: 50002, proxy: 台湾策略 }
-  - { name: MIXED-HK, type: mixed, port: 50003, proxy: 香港策略 }
-  - { name: MIXED-JP, type: mixed, port: 50004, proxy: 日本策略 }
-  - { name: MIXED-KR, type: mixed, port: 50005, proxy: 韩国策略 }
-  - { name: MIXED-EU, type: mixed, port: 50006, proxy: 欧盟策略 }
-  - { name: MIXED-AL, type: mixed, port: 50007, proxy: 默认代理 }
-
-# ==================== 核心配置 ====================
+# 核心配置
 # 基础配置
 mode: rule
 port: 7890
@@ -226,7 +204,7 @@ tcp-concurrent: true
 log-level: warning
 bind-address: "*"
 find-process-mode: "always"
-global-client-fingerprint: chrome
+client-fingerprint: chrome
 keep-alive-interval: 15
 keep-alive-idle: 600
 
@@ -242,13 +220,6 @@ skip-auth-prefixes:
 # 实验性功能
 experimental:
   quic-go-disable-gso: true
-
-# 管理面板配置
-external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
-external-ui-name: zashboard
-external-ui: ui
-external-controller: 127.0.0.1:9090
-secret: rkorona
 
 # 配置存储
 profile:
@@ -272,7 +243,7 @@ sniffer:
 
 # TUN模式配置
 tun:
-  enable: false
+  enable: true
   stack: mixed
   dns-hijack:
     - "any:53"
@@ -321,9 +292,9 @@ dns:
     - +.market.xiaomi.com
     - +.push.apple.com
 
-# ==================== 代理策略组 ====================
+# 代理策略组
 proxy-groups:
-  # ==================== 主要策略组 ====================
+  # 主要策略组
   - {
       name: 默认代理,
       <<: *SelectFB,
@@ -370,7 +341,7 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png,
     }
 
-  # ==================== 功能策略组 ====================
+  # 功能策略组
   - {
       name: 网络测试,
       <<: *SelectPY,
@@ -379,27 +350,26 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png,
     }
 
-  # ==================== 媒体服务 ====================
+  # 媒体服务
   - {
       name: 油管视频,
       <<: *SelectPY,
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png,
     }
 
-  # ==================== 社交平台 ====================
+  # 社交平台
   - {
       name: 电报消息,
       <<: *SelectPY,
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png,
     }
 
-  # ==================== 商业服务 ====================
+  # 商业服务
   - {
       name: 人工智能,
       <<: *SelectUS,
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png,
     }
-
   - {
       name: GitHub,
       <<: *SelectPY,
@@ -416,7 +386,7 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png,
     }
 
-  # ==================== 地区策略组 ====================
+  # 地区策略组
   - {
       name: 香港策略,
       type: select,
@@ -474,7 +444,7 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/European_Union.png,
     }
 
-  # ==================== 其他策略组 ====================
+  # 其他策略组
   - {
       name: 冷门自选,
       type: select,
@@ -490,7 +460,7 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png,
     }
 
-  # ==================== 自动测速组 ====================
+  # 自动测速组
   - {
       name: 香港自动,
       <<: *BaseUT,
@@ -541,7 +511,7 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png,
     }
 
-  # ==================== 负载均衡-散列 ====================
+  # 负载均衡-散列
   - {
       name: 香港均衡-散列,
       <<: *BaseCH,
@@ -592,7 +562,7 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
     }
 
-  # ==================== 负载均衡-轮询 ====================
+  # 负载均衡-轮询
   - {
       name: 香港均衡-轮询,
       <<: *BaseCR,
@@ -643,7 +613,7 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png,
     }
 
-# ==================== 规则路由 ====================
+# 规则路由
 rules:
   # 拦截规则
   - RULE-SET,Tracking,REJECT
@@ -677,7 +647,7 @@ rules:
   # 兜底规则
   - MATCH,兜底流量
 
-# ==================== 规则集 ====================
+# 规则集
 # 规则集行为模板
 BehaviorDN:
   &BehaviorDN { type: http, behavior: domain, format: mrs, interval: 86400 }
@@ -773,7 +743,7 @@ rule-providers:
   # IP规则
   AIIP:
     {
-      <<: *BehaviorDN,
+      <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs,
     }
   AdvertisingIP:
