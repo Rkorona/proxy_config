@@ -146,6 +146,22 @@
       ]
     },
     {
+      "tag": "Gemini",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "hongkong",
+        "taiwan",
+        "japan",
+        "singapore",
+        "korea",
+        "america",
+        "cn",
+        "hostdzire",
+        "other"
+      ]
+    },
+    {
       "tag": "Spotify",
       "type": "selector",
       "interrupt_exist_connections": true,
@@ -332,6 +348,11 @@
         "outbound": "OpenAI"
       },
       {
+        "rule_set": "gemini_domain",
+        "action": "route",
+        "outbound": "Gemini"
+      },
+      {
         "rule_set": "spotify_domain",
         "action": "route",
         "outbound": "Spotify"
@@ -408,6 +429,13 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Google/Google.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "gemini_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
         "download_detour": "direct"
       },
       {
