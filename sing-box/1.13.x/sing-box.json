@@ -306,6 +306,12 @@
         "action": "hijack-dns"
       },
       {
+        "rule_set": "Advertising_domain",
+        "action": "reject",
+        "method": "default",
+        "no_drop": false
+      },
+      {
         "ip_is_private": true,
         "action": "route",
         "outbound": "直接连接"
@@ -352,10 +358,6 @@
         "rule_set": "proxy_domain",
         "action": "route",
         "outbound": "默认代理"
-      },
-      {
-        "rule_set": "Advertising_domain",
-        "action": "reject"
       },
       {
         "action": "resolve"
