@@ -2,7 +2,7 @@
 
 // ==================== 备用节点 ====================
 const COMPATIBLE = { tag: 'COMPATIBLE', type: 'http' }
-const DIRECT = { tag: 'DIRECT', type: 'direct' }
+const DIRECT = { tag: '直接连接', type: 'direct' }
 const REJECT = {
   tag: 'REJECT',
   type: 'http'
@@ -21,25 +21,25 @@ let proxies = await produceArtifact({
 // 加入节点
 config.outbounds.push(...proxies)
 
-// ==================== 分组规则 ====================
-// ⚠️ 注意：all 不参与 matched 统计
+// 分组规则
 const rules = {
-  hongkong: /香港|hk|hongkong|🇭🇰/i,
-  taiwan: /台湾|tw|taiwan|🇼🇸/i,
-  japan: /日本|jp|japan|🇯🇵/i,
-  singapore: /新加坡|sg|singapore|🇸🇬/i,
-  korea: /韩国|kr|korea|🇰🇷/i,
-  america: /美国|us|america|🇺🇸/i,
-  cn: /徐州|武汉|镇江|济南|🇨🇳/i,
-  hostdzire: /hostdzire|hd/i,
-  all: /.*/i,
+  香港策略: /港|🇭🇰|HK|Hong|HKG/i,
+  台湾策略: /台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH/i,
+  日本策略: /日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK/i,
+  狮城策略: /坡|🇸🇬|SG|Sing|SIN|XSP/i,
+  韩国策略: /韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South/i,
+  美国策略: /美|🇺🇸|US|USA|JFK|SJC|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|Plus|Australia/i,
+  欧盟策略: /奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|🇬🇧|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU/i,
+  冷门自选: /^(?!.*(DIRECT|直接连接|美|港|坡|台|新|日|韩|奥|比|保|克罗地亚|塞|捷|丹|爱沙|芬|法|德|希|匈|爱尔|意|拉|立|卢|马其它|荷|波|葡|罗|斯洛伐|斯洛文|西|瑞|英|🇭🇰|🇼🇸|🇹🇼|🇸🇬|🇯🇵|🇰🇷|🇺🇸|🇬🇧|🇦🇹|🇧🇪|🇨🇿|🇩🇰|🇫🇮|🇫🇷|🇩🇪|🇮🇪|🇮🇹|🇱🇹|🇱🇺|🇳🇱|🇵🇱|🇸🇪|HK|TW|SG|JP|KR|US|GB|CDG|FRA|AMS|MAD|BCN|FCO|MUC|BRU|HKG|TPE|TSA|KHH|SIN|XSP|NRT|HND|KIX|CTS|FUK|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|LHR|LGW)).*/i,
+  全球手动: /^(?!.*(DIRECT|直接连接|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)).*/i
 }
 
 // ==================== 工具函数 ====================
 function getTags(list, regex) {
-  return list.filter(p => regex.test(p.tag)).map(p => p.tag)
+  return list
+    .filter(p => new RegExp(regex.source, regex.flags).test(p.tag))
+    .map(p => p.tag)
 }
-
 function ensureOutbound(outbound) {
   if (!config.outbounds.some(o => o.tag === outbound.tag)) {
     config.outbounds.push(outbound)
@@ -68,7 +68,7 @@ policyGroups.forEach(group => {
 
   group.outbounds = [...set]
 })
-
+/**
 // ==================== all 组（全部节点） ====================
 const allGroup = policyGroups.find(g => g.tag === 'all')
 if (allGroup) {
@@ -88,7 +88,7 @@ if (otherGroup) {
   otherTags.forEach(t => set.add(t))
   otherGroup.outbounds = [...set]
 }
-
+**/
 // ==================== UI 友好兜底 ====================
 
 policyGroups.forEach(group => {

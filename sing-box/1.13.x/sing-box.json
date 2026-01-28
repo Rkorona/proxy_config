@@ -10,7 +10,7 @@
         "tag": "cf",
         "type": "https",
         "server": "1.1.1.1",
-        "detour": "Proxy"
+        "detour": "默认代理"
       },
       {
         "tag": "ali",
@@ -82,35 +82,39 @@
   ],
   "outbounds": [
     {
-      "tag": "Proxy",
+      "tag": "默认代理",
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "taiwan",
-        "japan",
-        "singapore",
-        "korea",
-        "america",
-        "cn",
-        "hostdzire",
-        "other"
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "美国策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
       ]
     },
     {
-      "tag": "Google",
+      "tag": "谷歌服务",
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "taiwan",
-        "japan",
-        "singapore",
-        "korea",
-        "america",
-        "cn",
-        "hostdzire",
-        "other"
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "美国策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
       ]
     },
     {
@@ -118,47 +122,35 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "taiwan",
-        "japan",
-        "singapore",
-        "korea",
-        "america",
-        "cn",
-        "hostdzire",
-        "other"
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "美国策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
       ]
     },
     {
-      "tag": "OpenAI",
+      "tag": "AI",
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "taiwan",
-        "japan",
-        "singapore",
-        "korea",
-        "america",
-        "cn",
-        "hostdzire",
-        "other"
-      ]
-    },
-    {
-      "tag": "Gemini",
-      "type": "selector",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "hongkong",
-        "taiwan",
-        "japan",
-        "singapore",
-        "korea",
-        "america",
-        "cn",
-        "hostdzire",
-        "other"
+        "美国策略",
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "欧盟策略",
+        "美国策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
       ]
     },
     {
@@ -166,35 +158,39 @@
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "taiwan",
-        "japan",
-        "singapore",
-        "korea",
-        "america",
-        "cn",
-        "hostdzire",
-        "other"
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "美国策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
       ]
     },
     {
-      "tag": "China",
+      "tag": "国内流量",
       "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "hongkong",
-        "taiwan",
-        "japan",
-        "singapore",
-        "korea",
-        "america",
-        "cn",
-        "hostdzire",
-        "other"
+        "直接连接",
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "美国策略",
+        "冷门自选",
+        "全球手动"
       ]
     },
     {
-      "tag": "hongkong",
+      "tag": "香港策略",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -204,7 +200,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "taiwan",
+      "tag": "台湾策略",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -214,7 +210,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "japan",
+      "tag": "日本策略",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -224,7 +220,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "singapore",
+      "tag": "狮城策略",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -234,7 +230,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "korea",
+      "tag": "韩国策略",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -244,7 +240,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "america",
+      "tag": "欧盟策略",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -254,37 +250,29 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "cn",
-      "type": "selector",
-      "outbounds": [
-        "direct"
-      ],
-      "interrupt_exist_connections": true
-    },
-    {
-      "tag": "hostdzire",
-      "type": "selector",
+      "tag": "美国策略",
+      "type": "urltest",
       "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
-      "tag": "other",
+      "tag": "冷门自选",
       "type": "selector",
       "outbounds": [],
       "interrupt_exist_connections": true
     },
     {
-      "tag": "all",
-      "type": "urltest",
+      "tag": "全球手动",
+      "type": "selector",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
-      "tolerance": 50,
-      "idle_timeout": "60m",
       "interrupt_exist_connections": true
     },
     {
-      "tag": "direct",
+      "tag": "直接连接",
       "type": "direct"
     },
     {
@@ -320,22 +308,22 @@
       {
         "ip_is_private": true,
         "action": "route",
-        "outbound": "direct"
+        "outbound": "直接连接"
       },
       {
         "clash_mode": "Global",
         "action": "route",
-        "outbound": "Proxy"
+        "outbound": "默认代理"
       },
       {
         "clash_mode": "Direct",
         "action": "route",
-        "outbound": "direct"
+        "outbound": "直接连接"
       },
       {
         "rule_set": "google_domain",
         "action": "route",
-        "outbound": "Google"
+        "outbound": "谷歌服务"
       },
       {
         "rule_set": "github_domain",
@@ -343,14 +331,12 @@
         "outbound": "GitHub"
       },
       {
-        "rule_set": "openai_domain",
+        "rule_set": [
+          "openai_domain",
+          "gemini_domain"
+        ],
         "action": "route",
-        "outbound": "OpenAI"
-      },
-      {
-        "rule_set": "gemini_domain",
-        "action": "route",
-        "outbound": "Gemini"
+        "outbound": "AI"
       },
       {
         "rule_set": "spotify_domain",
@@ -360,12 +346,12 @@
       {
         "rule_set": "cn_domain",
         "action": "route",
-        "outbound": "China"
+        "outbound": "国内流量"
       },
       {
         "rule_set": "proxy_domain",
         "action": "route",
-        "outbound": "Proxy"
+        "outbound": "默认代理"
       },
       {
         "rule_set": "Advertising_domain",
@@ -377,15 +363,15 @@
       {
         "rule_set": "google_ip",
         "action": "route",
-        "outbound": "Google"
+        "outbound": "谷歌服务"
       },
       {
         "rule_set": "cn_ip",
         "action": "route",
-        "outbound": "China"
+        "outbound": "国内流量"
       }
     ],
-    "final": "Proxy",
+    "final": "默认代理",
     "override_android_vpn": true,
     "auto_detect_interface": true,
     "rule_set": [
@@ -394,70 +380,70 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/OpenAI/OpenAI.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "spotify_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Spotify/Spotify.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "cn_ip",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaIPs/ChinaIPs.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "cn_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaMaxNoIP/ChinaMaxNoIP.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "google_ip",
         "type": "remote",
         "format": "binary",
         "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geoip/google.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "google_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Google/Google.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "gemini_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "proxy_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Proxy/Proxy.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "github_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/GitHub/GitHub.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       },
       {
         "tag": "Advertising_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Advertising/Advertising.srs",
-        "download_detour": "direct"
+        "download_detour": "直接连接"
       }
     ]
   },
@@ -466,7 +452,7 @@
       "external_controller": "127.0.0.1:9091",
       "external_ui": "zashboard",
       "external_ui_download_url": "https://ghfast.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
-      "external_ui_download_detour": "direct"
+      "external_ui_download_detour": "直接连接"
     },
     "cache_file": {
       "enabled": true,

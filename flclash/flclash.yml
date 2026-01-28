@@ -281,9 +281,9 @@ dns:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   fake-ip-filter:
-    - rule-set:Direct
-    - rule-set:Private
-    - rule-set:China
+    - rule-set:direct
+    - rule-set:private
+    - rule-set:china
     - rule-set:fakeip-filter
     - +.pub.3gppnetwork.org
     - "+.bing.com"
@@ -341,49 +341,41 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Direct.png,
     }
 
-  # 功能策略组
+  # 服务分流
   - {
-      name: 网络测试,
+      name: 谷歌服务,
       <<: *SelectPY,
-      include-all: true,
-      filter: *FilterAL,
-      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Speedtest.png,
+      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png,
     }
-
-  # 媒体服务
   - {
-      name: 油管视频,
+      name: GitHub,
       <<: *SelectPY,
-      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png,
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/github.png,
     }
-
-  # 社交平台
   - {
-      name: 电报消息,
+      name: Spotify,
       <<: *SelectPY,
-      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png,
+      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/spotify.png,
     }
-
-  # 商业服务
   - {
       name: 人工智能,
       <<: *SelectUS,
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png,
     }
   - {
-      name: GitHub,
+      name: 油管视频,
       <<: *SelectPY,
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/github(1).png,
+      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png,
+    }
+  - {
+      name: 电报消息,
+      <<: *SelectPY,
+      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png,
     }
   - {
       name: 微软服务,
       <<: *SelectPY,
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png,
-    }
-  - {
-      name: 谷歌服务,
-      <<: *SelectPY,
-      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png,
     }
 
   # 地区策略组
@@ -616,33 +608,32 @@ proxy-groups:
 # 规则路由
 rules:
   # 拦截规则
-  - RULE-SET,Tracking,REJECT
-  - RULE-SET,AWAvenueAds,REJECT
-  - RULE-SET,Advertising,REJECT
+  - RULE-SET,tracking,REJECT
+  - RULE-SET,awavenueads,REJECT
+  - RULE-SET,advertising,REJECT
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # 阻止 QUIC
 
   # 域名规则
-  - RULE-SET,Private,直接连接
-  - RULE-SET,Direct,直接连接
-  - DOMAIN-KEYWORD,speedtest,网络测试
-  - RULE-SET,Speedtest,网络测试
-  - RULE-SET,Telegram,电报消息
-  - RULE-SET,AI,人工智能
-  - RULE-SET,YouTube,油管视频
-  - RULE-SET,Google,谷歌服务
-  - RULE-SET,Github,GitHub
-  - RULE-SET,Microsoft,微软服务
-  - RULE-SET,Proxy,国外流量
-  - RULE-SET,China,国内流量
+  - RULE-SET,private,直接连接
+  - RULE-SET,direct,直接连接
+  - RULE-SET,telegram,电报消息
+  - RULE-SET,ai,人工智能
+  - RULE-SET,youtube,油管视频
+  - RULE-SET,github,GitHub
+  - RULE-SET,spotify,Spotify
+  - RULE-SET,google,谷歌服务
+  - RULE-SET,microsoft,微软服务
+  - RULE-SET,proxy,国外流量
+  - RULE-SET,china,国内流量
 
   # IP规则
-  - RULE-SET,AdvertisingIP,REJECT,no-resolve
-  - RULE-SET,PrivateIP,直接连接,no-resolve
-  - RULE-SET,TelegramIP,电报消息,no-resolve
-  - RULE-SET,GoogleIP,谷歌服务,no-resolve
-  - RULE-SET,AIIP,人工智能,no-resolve
-  - RULE-SET,ProxyIP,国外流量,no-resolve
-  - RULE-SET,ChinaIP,国内流量,no-resolve
+  - RULE-SET,advertising_ip,REJECT,no-resolve
+  - RULE-SET,private_ip,直接连接,no-resolve
+  - RULE-SET,telegram_ip,电报消息,no-resolve
+  - RULE-SET,google_ip,谷歌服务,no-resolve
+  - RULE-SET,ai_ip,人工智能,no-resolve
+  - RULE-SET,proxy_ip,国外流量,no-resolve
+  - RULE-SET,china_ip,国内流量,no-resolve
 
   # 兜底规则
   - MATCH,兜底流量
@@ -674,111 +665,111 @@ ClassicalYaml:
 # 规则提供者
 rule-providers:
   # 域名规则
-  AI:
-    {
-      <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs,
-    }
-  Tracking:
+  tracking:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Tracking.mrs,
     }
-  Advertising:
+  advertising:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Advertising.mrs,
     }
-  Direct:
+  direct:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Direct.mrs,
     }
-  Private:
+  private:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs,
     }
-  Speedtest:
-    {
-      <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Speedtest.mrs,
-    }
-  Telegram:
+  telegram:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Telegram.mrs,
     }
-  YouTube:
+  ai:
+    {
+      <<: *BehaviorDN,
+      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs,
+    }
+  youtube:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/YouTube.mrs,
     }
-  Google:
+  google:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Google.mrs,
     }
-  Github:
+  github:
     {
       <<: *BehaviorDN,
       url: https://github.com/666OS/rules/raw/release/mihomo/domain/GitHub.mrs,
     }
-  Microsoft:
+  spotify:
+    {
+      <<: *BehaviorDN,
+      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Spotify.mrs,
+    }
+  microsoft:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Microsoft.mrs,
     }
-  Proxy:
+  proxy:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Proxy.mrs,
     }
-  China:
+  china:
     {
       <<: *BehaviorDN,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/China.mrs,
     }
 
   # IP规则
-  AIIP:
+  ai_ip:
     {
       <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs,
     }
-  AdvertisingIP:
+  advertising_ip:
     {
       <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Advertising.mrs,
     }
-  PrivateIP:
+  private_ip:
     {
       <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Private.mrs,
     }
-  TelegramIP:
+  telegram_ip:
     {
       <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Telegram.mrs,
     }
-  GoogleIP:
+  google_ip:
     {
       <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Google.mrs,
     }
-  ProxyIP:
+  proxy_ip:
     {
       <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Proxy.mrs,
     }
-  ChinaIP:
+  china_ip:
     {
       <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/China.mrs,
     }
 
   # 广告规则
-  AWAvenueAds:
+  awavenueads:
     {
       <<: *BehaviorDY,
       url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml,
