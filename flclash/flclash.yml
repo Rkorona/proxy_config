@@ -608,9 +608,7 @@ proxy-groups:
 # 规则路由
 rules:
   # 拦截规则
-  - RULE-SET,tracking,REJECT
   - RULE-SET,awavenueads,REJECT
-  - RULE-SET,advertising,REJECT
   - AND,((DST-PORT,443),(NETWORK,UDP)),REJECT # 阻止 QUIC
 
   # 域名规则
@@ -665,16 +663,6 @@ ClassicalYaml:
 # 规则提供者
 rule-providers:
   # 域名规则
-  tracking:
-    {
-      <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Tracking.mrs,
-    }
-  advertising:
-    {
-      <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Advertising.mrs,
-    }
   direct:
     {
       <<: *BehaviorDN,
@@ -683,12 +671,12 @@ rule-providers:
   private:
     {
       <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs,
     }
   telegram:
     {
       <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Telegram.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs,
     }
   ai:
     {
@@ -698,22 +686,22 @@ rule-providers:
   youtube:
     {
       <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/YouTube.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs,
     }
   google:
     {
       <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Google.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs,
     }
   github:
     {
       <<: *BehaviorDN,
-      url: https://github.com/666OS/rules/raw/release/mihomo/domain/GitHub.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs,
     }
   spotify:
     {
       <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Spotify.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs,
     }
   microsoft:
     {
@@ -723,12 +711,12 @@ rule-providers:
   proxy:
     {
       <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Proxy.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs,
     }
   china:
     {
       <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/China.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs,
     }
 
   # IP规则
@@ -737,35 +725,30 @@ rule-providers:
       <<: *BehaviorIP,
       url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs,
     }
-  advertising_ip:
-    {
-      <<: *BehaviorIP,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Advertising.mrs,
-    }
   private_ip:
     {
       <<: *BehaviorIP,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Private.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs,
     }
   telegram_ip:
     {
       <<: *BehaviorIP,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Telegram.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs,
     }
   google_ip:
     {
       <<: *BehaviorIP,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Google.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs,
     }
   proxy_ip:
     {
       <<: *BehaviorIP,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/Proxy.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs,
     }
   china_ip:
     {
       <<: *BehaviorIP,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/China.mrs,
+      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs,
     }
 
   # 广告规则
