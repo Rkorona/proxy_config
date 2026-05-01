@@ -53,6 +53,16 @@
     "final": "cf",
     "strategy": "prefer_ipv4"
   },
+  "http_clients": [
+    {
+      "tag": "default",
+      "detour": "Proxy"
+    },
+    {
+      "tag": "direct",
+      "detour": "direct"
+    }
+  ],
   "inbounds": [
     {
       "tag": "tun-in",
@@ -381,70 +391,70 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/OpenAI/OpenAI.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "spotify_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Spotify/Spotify.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "cn_ip",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaIPs/ChinaIPs.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "cn_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaMaxNoIP/ChinaMaxNoIP.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "google_ip",
         "type": "remote",
         "format": "binary",
         "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geoip/google.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "google_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Google/Google.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "gemini_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "proxy_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Proxy/Proxy.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "github_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/GitHub/GitHub.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       },
       {
         "tag": "Advertising_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Advertising/Advertising.srs",
-        "download_detour": "直接连接"
+        "http_client": "direct"
       }
     ]
   },
