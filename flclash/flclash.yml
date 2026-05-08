@@ -348,34 +348,9 @@ proxy-groups:
       icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png,
     }
   - {
-      name: GitHub,
-      <<: *SelectPY,
-      icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/github.png,
-    }
-  - {
       name: Spotify,
       <<: *SelectPY,
       icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/spotify.png,
-    }
-  - {
-      name: 人工智能,
-      <<: *SelectUS,
-      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png,
-    }
-  - {
-      name: 油管视频,
-      <<: *SelectPY,
-      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/YouTube.png,
-    }
-  - {
-      name: 电报消息,
-      <<: *SelectPY,
-      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram_X.png,
-    }
-  - {
-      name: 微软服务,
-      <<: *SelectPY,
-      icon: https://git.imee.me/https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png,
     }
 
   # 地区策略组
@@ -614,21 +589,14 @@ rules:
   # 域名规则
   - RULE-SET,private,直接连接
   - RULE-SET,direct,直接连接
-  - RULE-SET,telegram,电报消息
-  - RULE-SET,ai,人工智能
-  - RULE-SET,youtube,油管视频
-  - RULE-SET,github,GitHub
   - RULE-SET,spotify,Spotify
   - RULE-SET,google,谷歌服务
-  - RULE-SET,microsoft,微软服务
   - RULE-SET,proxy,国外流量
   - RULE-SET,china,国内流量
 
   # IP规则
   - RULE-SET,private_ip,直接连接,no-resolve
-  - RULE-SET,telegram_ip,电报消息,no-resolve
   - RULE-SET,google_ip,谷歌服务,no-resolve
-  - RULE-SET,ai_ip,人工智能,no-resolve
   - RULE-SET,proxy_ip,国外流量,no-resolve
   - RULE-SET,china_ip,国内流量,no-resolve
 
@@ -672,40 +640,15 @@ rule-providers:
       <<: *BehaviorDN,
       url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs,
     }
-  telegram:
-    {
-      <<: *BehaviorDN,
-      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs,
-    }
-  ai:
-    {
-      <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs,
-    }
-  youtube:
-    {
-      <<: *BehaviorDN,
-      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs,
-    }
   google:
     {
       <<: *BehaviorDN,
       url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs,
     }
-  github:
-    {
-      <<: *BehaviorDN,
-      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs,
-    }
   spotify:
     {
       <<: *BehaviorDN,
       url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs,
-    }
-  microsoft:
-    {
-      <<: *BehaviorDN,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/domain/Microsoft.mrs,
     }
   proxy:
     {
@@ -719,20 +662,10 @@ rule-providers:
     }
 
   # IP规则
-  ai_ip:
-    {
-      <<: *BehaviorIP,
-      url: https://git.imee.me/https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs,
-    }
   private_ip:
     {
       <<: *BehaviorIP,
       url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs,
-    }
-  telegram_ip:
-    {
-      <<: *BehaviorIP,
-      url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs,
     }
   google_ip:
     {
