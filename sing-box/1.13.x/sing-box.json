@@ -127,42 +127,6 @@
       ]
     },
     {
-      "tag": "GitHub",
-      "type": "selector",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "香港策略",
-        "台湾策略",
-        "日本策略",
-        "狮城策略",
-        "韩国策略",
-        "美国策略",
-        "欧盟策略",
-        "美国策略",
-        "冷门自选",
-        "全球手动",
-        "直接连接"
-      ]
-    },
-    {
-      "tag": "AI",
-      "type": "selector",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "美国策略",
-        "香港策略",
-        "台湾策略",
-        "日本策略",
-        "狮城策略",
-        "韩国策略",
-        "欧盟策略",
-        "美国策略",
-        "冷门自选",
-        "全球手动",
-        "直接连接"
-      ]
-    },
-    {
       "tag": "Spotify",
       "type": "selector",
       "interrupt_exist_connections": true,
@@ -341,19 +305,6 @@
         "outbound": "谷歌服务"
       },
       {
-        "rule_set": "github_domain",
-        "action": "route",
-        "outbound": "GitHub"
-      },
-      {
-        "rule_set": [
-          "openai_domain",
-          "gemini_domain"
-        ],
-        "action": "route",
-        "outbound": "AI"
-      },
-      {
         "rule_set": "spotify_domain",
         "action": "route",
         "outbound": "Spotify"
@@ -386,13 +337,6 @@
     "override_android_vpn": true,
     "auto_detect_interface": true,
     "rule_set": [
-      {
-        "tag": "openai_domain",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/OpenAI/OpenAI.srs",
-        "http_client": "direct"
-      },
       {
         "tag": "spotify_domain",
         "type": "remote",
@@ -429,24 +373,10 @@
         "http_client": "direct"
       },
       {
-        "tag": "gemini_domain",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
-        "http_client": "direct"
-      },
-      {
         "tag": "proxy_domain",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Proxy/Proxy.srs",
-        "http_client": "direct"
-      },
-      {
-        "tag": "github_domain",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/GitHub/GitHub.srs",
         "http_client": "direct"
       },
       {
