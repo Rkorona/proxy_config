@@ -102,7 +102,6 @@
         "韩国策略",
         "美国策略",
         "欧盟策略",
-        "美国策略",
         "冷门自选",
         "全球手动",
         "直接连接"
@@ -120,7 +119,6 @@
         "韩国策略",
         "美国策略",
         "欧盟策略",
-        "美国策略",
         "冷门自选",
         "全球手动",
         "直接连接"
@@ -138,7 +136,23 @@
         "韩国策略",
         "美国策略",
         "欧盟策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
+      ]
+    },
+    {
+      "tag": "人工智能",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
         "美国策略",
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "欧盟策略",
         "冷门自选",
         "全球手动",
         "直接连接"
@@ -157,7 +171,6 @@
         "韩国策略",
         "美国策略",
         "欧盟策略",
-        "美国策略",
         "冷门自选",
         "全球手动"
       ]
@@ -213,7 +226,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "欧盟策略",
+      "tag": "美国策略",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -223,7 +236,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "美国策略",
+      "tag": "欧盟策略",
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
@@ -300,6 +313,14 @@
         "outbound": "直接连接"
       },
       {
+        "rule_set": [
+          "claude_domain",
+          "gemini_domain"
+        ],
+        "action": "route",
+        "outbound": "人工智能"
+      },
+      {
         "rule_set": "google_domain",
         "action": "route",
         "outbound": "谷歌服务"
@@ -370,6 +391,20 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Google/Google.srs",
+        "http_client": "direct"
+      },
+      {
+        "tag": "claude_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Claude/Claude.srs",
+        "http_client": "direct"
+      },
+      {
+        "tag": "gemini_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
         "http_client": "direct"
       },
       {
