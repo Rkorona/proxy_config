@@ -143,17 +143,9 @@ x-rule-set-ipcidr:
 
 proxy-providers:
   MianLiuYun:
-    {
-      <<: *base-provider,
-      url: "https://substore.rkorona.de/rkorona/download/MianLiuYun?target=ClashMeta",
-      override: { additional-prefix: "[M] " },
-    }
+    { <<: *base-provider, url: "", override: { additional-prefix: "[M] " } }
   DediRock:
-    {
-      <<: *base-provider,
-      url: "https://substore.rkorona.de/rkorona/download/DediRock_vps?target=ClashMeta",
-      override: { additional-prefix: "[D] " },
-    }
+    { <<: *base-provider, url: "", override: { additional-prefix: "[D] " } }
 
 # 自定义代理节点
 proxies:
