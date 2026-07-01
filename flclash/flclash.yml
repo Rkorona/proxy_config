@@ -147,9 +147,9 @@ x-rule-set-ipcidr:
   }
 
 proxy-providers:
-  MianLiuYun:
+  sub1:
     { <<: *base-provider, url: "", override: { additional-prefix: "[M] " } }
-  DediRock:
+  sub2:
     { <<: *base-provider, url: "", override: { additional-prefix: "[D] " } }
 
 # 自定义代理节点
