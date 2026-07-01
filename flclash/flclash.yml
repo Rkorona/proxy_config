@@ -63,6 +63,7 @@ x-oversea:
 x-direct:
   &direct [
     DIRECT,
+    国外流量,
     故障转移,
     全球手动,
     自建节点,
@@ -76,6 +77,7 @@ x-direct:
 x-us-first:
   &us-first [
     美国策略,
+    国外流量,
     故障转移,
     全球手动,
     自建节点,
@@ -89,6 +91,7 @@ x-us-first:
 x-hk-first:
   &hk-first [
     香港策略,
+    国外流量,
     故障转移,
     全球手动,
     自建节点,
@@ -102,6 +105,7 @@ x-hk-first:
 x-sg-first:
   &sg-first [
     狮城策略,
+    国外流量,
     故障转移,
     全球手动,
     自建节点,
@@ -115,6 +119,7 @@ x-sg-first:
 x-jp-first:
   &jp-first [
     日本策略,
+    国外流量,
     故障转移,
     全球手动,
     自建节点,
