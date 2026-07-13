@@ -1,0 +1,965 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "cf",
+        "type": "https",
+        "server": "1.1.1.1",
+        "detour": "默认代理"
+      },
+      {
+        "tag": "ali",
+        "type": "https",
+        "server": "223.5.5.5"
+      },
+      {
+        "tag": "fakeip",
+        "type": "fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
+      }
+    ],
+    "rules": [
+      {
+        "clash_mode": "Direct",
+        "action": "route",
+        "server": "ali"
+      },
+      {
+        "clash_mode": "Global",
+        "action": "route",
+        "server": "fakeip"
+      },
+      {
+        "rule_set": "cn_domain",
+        "action": "route",
+        "server": "ali"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "action": "route",
+        "server": "fakeip",
+        "rewrite_ttl": 1
+      }
+    ],
+    "final": "cf",
+    "strategy": "prefer_ipv4"
+  },
+  "http_clients": [
+    {
+      "tag": "default",
+      "detour": "Proxy"
+    },
+    {
+      "tag": "direct",
+      "detour": "direct"
+    }
+  ],
+  "inbounds": [
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "address": [
+        "172.19.0.0/30",
+        "fdfe:dcba:9876::0/126"
+      ],
+      "stack": "mixed",
+      "auto_route": true,
+      "strict_route": true,
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7790
+        }
+      }
+    },
+    {
+      "tag": "mixed-in",
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 7790
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "默认代理",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
+      ]
+    },
+    {
+      "tag": "谷歌服务",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
+      ]
+    },
+    {
+      "tag": "Spotify",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
+      ]
+    },
+    {
+      "tag": "人工智能",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "美国策略",
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "欧盟策略",
+        "冷门自选",
+        "全球手动",
+        "直接连接"
+      ]
+    },
+    {
+      "tag": "国内流量",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "直接连接",
+        "香港策略",
+        "台湾策略",
+        "日本策略",
+        "狮城策略",
+        "韩国策略",
+        "美国策略",
+        "欧盟策略",
+        "冷门自选",
+        "全球手动"
+      ]
+    },
+    {
+      "tag": "香港策略",
+      "type": "urltest",
+      "outbounds": [
+        "🇭🇰 香港 01",
+        "🇭🇰 香港 02",
+        "🇭🇰 香港 03"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "台湾策略",
+      "type": "urltest",
+      "outbounds": [
+        "🇼🇸 台湾 01",
+        "🇼🇸 台湾 02"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "日本策略",
+      "type": "urltest",
+      "outbounds": [
+        "🇯🇵 日本 01",
+        "🇯🇵 日本 02"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "狮城策略",
+      "type": "urltest",
+      "outbounds": [
+        "🇸🇬 新加坡 01",
+        "🇸🇬 新加坡 02"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "韩国策略",
+      "type": "urltest",
+      "outbounds": [
+        "🇰🇷 韩国 01",
+        "REJECT"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "美国策略",
+      "type": "urltest",
+      "outbounds": [
+        "🇺🇸 美国 01",
+        "🇺🇸 美国 02",
+        "🇺🇸 美国 03",
+        "🇺🇸 美国 04"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "欧盟策略",
+      "type": "urltest",
+      "outbounds": [
+        "🇬🇧 英国 01",
+        "REJECT"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "冷门自选",
+      "type": "selector",
+      "outbounds": [
+        "D-VLESS-WS-TLS",
+        "D-VMESS-WS-TLS",
+        "D-VMESS-WS",
+        "D-VLESS-XTLS-RED-ALITY",
+        "D-ANYTLS",
+        "🇨🇳 广州移动 01 | ws",
+        "🇨🇳 广州移动 02 | tcp",
+        "🇨🇳 广州移动 03 | ws | ipv6",
+        "🇨🇳 广州移动 04 | tcp | ipv6",
+        "🇹🇭 泰国 01",
+        "🇨🇦 加拿大 01"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "全球手动",
+      "type": "selector",
+      "outbounds": [
+        "D-VLESS-WS-TLS",
+        "D-VMESS-WS-TLS",
+        "D-VMESS-WS",
+        "D-VLESS-XTLS-RED-ALITY",
+        "D-ANYTLS",
+        "🇨🇳 广州移动 01 | ws",
+        "🇨🇳 广州移动 02 | tcp",
+        "🇨🇳 广州移动 03 | ws | ipv6",
+        "🇨🇳 广州移动 04 | tcp | ipv6",
+        "🇭🇰 香港 01",
+        "🇭🇰 香港 02",
+        "🇭🇰 香港 03",
+        "🇼🇸 台湾 01",
+        "🇼🇸 台湾 02",
+        "🇸🇬 新加坡 01",
+        "🇸🇬 新加坡 02",
+        "🇯🇵 日本 01",
+        "🇯🇵 日本 02",
+        "🇰🇷 韩国 01",
+        "🇹🇭 泰国 01",
+        "🇺🇸 美国 01",
+        "🇺🇸 美国 02",
+        "🇺🇸 美国 03",
+        "🇺🇸 美国 04",
+        "🇨🇦 加拿大 01",
+        "🇬🇧 英国 01"
+      ],
+      "interrupt_exist_connections": true
+    },
+    {
+      "tag": "直接连接",
+      "type": "direct"
+    },
+    {
+      "tag": "reject",
+      "type": "http"
+    },
+    {
+      "tag": "D-VLESS-WS-TLS",
+      "type": "vless",
+      "server": "skk.moe",
+      "server_port": 2083,
+      "uuid": "2bf37f55-cbd6-4bf4-9268-82a994519e8e",
+      "tls": {
+        "enabled": true,
+        "server_name": "node.rkorona.de",
+        "insecure": false
+      },
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "node.rkorona.de"
+        },
+        "path": "/rkorona"
+      }
+    },
+    {
+      "tag": "D-VMESS-WS-TLS",
+      "type": "vmess",
+      "server": "www.wto.org",
+      "server_port": 2053,
+      "uuid": "7692be89-25cc-4bba-9bff-7a995b172884",
+      "security": "auto",
+      "alter_id": 0,
+      "tls": {
+        "enabled": true,
+        "server_name": "node.rkorona.de",
+        "insecure": false
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "node.rkorona.de"
+        },
+        "path": "/rkorona"
+      }
+    },
+    {
+      "tag": "D-VMESS-WS",
+      "type": "vmess",
+      "server": "107.173.29.179",
+      "server_port": 2052,
+      "uuid": "1cb612ce-7c9a-461f-81ae-9c4a7f51b0cc",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com"
+        },
+        "path": "/rkorona"
+      }
+    },
+    {
+      "tag": "D-VLESS-XTLS-RED-ALITY",
+      "type": "vless",
+      "server": "107.173.29.179",
+      "server_port": 2087,
+      "uuid": "ca6270ed-6bbd-42ac-b00d-60085a1f59c8",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.cloudflare.com",
+        "insecure": false,
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
+        "reality": {
+          "enabled": true,
+          "public_key": "R8oqThoiX7TlJMqYWKRZI1BCNG-DNvKQprRL8JHigGs",
+          "short_id": "4c377dbab8d12170"
+        },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "packet_encoding": "xudp",
+      "flow": "xtls-rprx-vision"
+    },
+    {
+      "tag": "D-ANYTLS",
+      "type": "anytls",
+      "server": "107.173.29.179",
+      "server_port": 2096,
+      "password": "fRmtM+cyh1EGhWTmDWTyjw==",
+      "tls": {
+        "enabled": true,
+        "server_name": "node.rkorona.de",
+        "insecure": false
+      },
+      "idle_session_check_interval": "30s",
+      "idle_session_timeout": "60s",
+      "min_idle_session": 3
+    },
+    {
+      "tag": "🇨🇳 广州移动 01 | ws",
+      "type": "vmess",
+      "server": "120.240.141.9",
+      "server_port": 4430,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/"
+      }
+    },
+    {
+      "tag": "🇨🇳 广州移动 02 | tcp",
+      "type": "vmess",
+      "server": "120.240.141.10",
+      "server_port": 4430,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "http",
+        "headers": {
+          "Connection": "keep-alive",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "method": "POST",
+        "path": "/",
+        "host": "tms.dingtalk.com"
+      }
+    },
+    {
+      "tag": "🇨🇳 广州移动 03 | ws | ipv6",
+      "type": "vmess",
+      "server": "2409:8c54:6810:21::8964",
+      "server_port": 4430,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/"
+      }
+    },
+    {
+      "tag": "🇨🇳 广州移动 04 | tcp | ipv6",
+      "type": "vmess",
+      "server": "2409:8c54:6810:22::8964",
+      "server_port": 4430,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "http",
+        "headers": {
+          "Connection": "keep-alive",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "method": "POST",
+        "path": "/",
+        "host": "tms.dingtalk.com"
+      }
+    },
+    {
+      "tag": "🇭🇰 香港 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/e6033871-152c-aee9-b059-a33eed99914d"
+      }
+    },
+    {
+      "tag": "🇭🇰 香港 02",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/1b0b075f-e8cc-1741-25f7-51689f4f34e6"
+      }
+    },
+    {
+      "tag": "🇭🇰 香港 03",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/8b8b8554-20c0-fa96-9d2d-2c420abf2faa"
+      }
+    },
+    {
+      "tag": "🇼🇸 台湾 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/ae36e201-a82a-65a0-1e6c-fcf316773b16"
+      }
+    },
+    {
+      "tag": "🇼🇸 台湾 02",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/adb4c2cc-9e77-d6fc-4dba-e06b15659469"
+      }
+    },
+    {
+      "tag": "🇸🇬 新加坡 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/c66a1180-f704-e966-08fd-c1d41218fb3d"
+      }
+    },
+    {
+      "tag": "🇸🇬 新加坡 02",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/c4fd0a9f-486f-d9eb-12e3-0b86021ccba1"
+      }
+    },
+    {
+      "tag": "🇯🇵 日本 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/d51a803c-794b-0993-7317-086a6990aa3b"
+      }
+    },
+    {
+      "tag": "🇯🇵 日本 02",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/8adff421-9461-c795-7fb6-226142b8e194"
+      }
+    },
+    {
+      "tag": "🇰🇷 韩国 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/9a688145-d2b2-f20d-d774-3062666381c9"
+      }
+    },
+    {
+      "tag": "🇹🇭 泰国 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/2e9e0288-9f95-4861-461f-e662e6cbe6c9"
+      }
+    },
+    {
+      "tag": "🇺🇸 美国 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/037bcb02-13a3-434b-483d-bcfe20daba07"
+      }
+    },
+    {
+      "tag": "🇺🇸 美国 02",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/06a72651-29e6-85ce-e8dd-d096037f16b0"
+      }
+    },
+    {
+      "tag": "🇺🇸 美国 03",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/34ec32f8-5ba7-e22c-731b-932254181c08"
+      }
+    },
+    {
+      "tag": "🇺🇸 美国 04",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/fc26cd0e-0c72-83f5-495e-124282f75e53"
+      }
+    },
+    {
+      "tag": "🇨🇦 加拿大 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/83880a52-5732-7ecb-4d86-a7dfbde8cd73"
+      }
+    },
+    {
+      "tag": "🇬🇧 英国 01",
+      "type": "vmess",
+      "server": "120.240.142.22",
+      "server_port": 21865,
+      "uuid": "b8e42ef1-db5e-86c0-210a-c8709d49c341",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "tms.dingtalk.com",
+          "User-Agent": "DingTalk/54318050 CFNetwork/3826.600.41 Darwin/24.6.0"
+        },
+        "path": "/9e99a0fc-f3f2-6cb3-c90b-409b98bd848d"
+      }
+    },
+    {
+      "tag": "REJECT",
+      "type": "http"
+    }
+  ],
+  "route": {
+    "default_domain_resolver": {
+      "server": "ali"
+    },
+    "rules": [
+      {
+        "inbound": [
+          "tun-in",
+          "mixed-in"
+        ],
+        "action": "sniff"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "rule_set": "Advertising_domain",
+        "action": "reject",
+        "method": "default",
+        "no_drop": false
+      },
+      {
+        "ip_is_private": true,
+        "action": "route",
+        "outbound": "直接连接"
+      },
+      {
+        "clash_mode": "Global",
+        "action": "route",
+        "outbound": "默认代理"
+      },
+      {
+        "clash_mode": "Direct",
+        "action": "route",
+        "outbound": "直接连接"
+      },
+      {
+        "rule_set": [
+          "claude_domain",
+          "gemini_domain"
+        ],
+        "action": "route",
+        "outbound": "人工智能"
+      },
+      {
+        "rule_set": "google_domain",
+        "action": "route",
+        "outbound": "谷歌服务"
+      },
+      {
+        "rule_set": "spotify_domain",
+        "action": "route",
+        "outbound": "Spotify"
+      },
+      {
+        "rule_set": "cn_domain",
+        "action": "route",
+        "outbound": "国内流量"
+      },
+      {
+        "rule_set": "proxy_domain",
+        "action": "route",
+        "outbound": "默认代理"
+      },
+      {
+        "action": "resolve"
+      },
+      {
+        "rule_set": "google_ip",
+        "action": "route",
+        "outbound": "谷歌服务"
+      },
+      {
+        "rule_set": "cn_ip",
+        "action": "route",
+        "outbound": "国内流量"
+      }
+    ],
+    "final": "默认代理",
+    "override_android_vpn": true,
+    "auto_detect_interface": true,
+    "rule_set": [
+      {
+        "tag": "spotify_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Spotify/Spotify.srs",
+        "download_detour": "直接连接"
+      },
+      {
+        "tag": "cn_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaIPs/ChinaIPs.srs",
+        "download_detour": "直接连接"
+      },
+      {
+        "tag": "cn_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaMaxNoIP/ChinaMaxNoIP.srs",
+        "download_detour": "直接连接"
+      },
+      {
+        "tag": "google_ip",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geoip/google.srs",
+        "download_detour": "直接连接"
+      },
+      {
+        "tag": "google_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Google/Google.srs",
+        "download_detour": "直接连接"
+      },
+      {
+        "tag": "claude_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Claude/Claude.srs",
+        "download_detour": "直接连接"
+      },
+      {
+        "tag": "gemini_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
+        "download_detour": "直接连接"
+      },
+      {
+        "tag": "proxy_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Proxy/Proxy.srs",
+        "download_detour": "直接连接"
+      },
+      {
+        "tag": "Advertising_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Advertising/Advertising.srs",
+        "download_detour": "直接连接"
+      }
+    ]
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9091",
+      "external_ui": "zashboard",
+      "external_ui_download_url": "https://ghfast.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "直接连接"
+    },
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true
+    }
+  }
+}
