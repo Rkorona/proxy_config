@@ -147,10 +147,8 @@ x-rule-set-ipcidr:
   }
 
 proxy-providers:
-  sub1:
-    { <<: *base-provider, url: "", override: { additional-prefix: "[M] " } }
-  sub2:
-    { <<: *base-provider, url: "", override: { additional-prefix: "[D] " } }
+  sub1: { <<: *base-provider, url: "", override: { additional-prefix: "[M] " } }
+  sub2: { <<: *base-provider, url: "", override: { additional-prefix: "[D] " } }
 
 # 自定义代理节点
 proxies:
@@ -451,7 +449,7 @@ rules:
   - RULE-SET,ChinaIP,国内流量,no-resolve
 
   # 兜底规则
-  - MATCH,漏网之鱼
+  - MATCH,国外流量
 
 # 规则集提供者
 rule-providers:
