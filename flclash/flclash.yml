@@ -261,12 +261,6 @@ proxy-groups:
       proxies: [REJECT-DROP, REJECT, DIRECT],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Reject.png,
     }
-  - {
-      name: 漏网之鱼,
-      type: select,
-      proxies: *oversea,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png,
-    }
 
   # 自动选择
   - {
