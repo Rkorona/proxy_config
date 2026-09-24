@@ -265,6 +265,16 @@
       "interrupt_exist_connections": true
     },
     {
+      "tag": "自动测试",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "idle_timeout": "30m",
+      "interrupt_exist_connections": true
+    },
+    {
       "tag": "直接连接",
       "type": "direct"
     },
