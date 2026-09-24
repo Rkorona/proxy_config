@@ -92,7 +92,11 @@
   "outbounds": [
     {
       "tag": "默认代理",
-      "type": "selector",
+      "type": "urltest",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true,
       "outbounds": [
         "香港策略",
@@ -107,7 +111,11 @@
     },
     {
       "tag": "谷歌服务",
-      "type": "selector",
+      "type": "urltest",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true,
       "outbounds": [
         "香港策略",
@@ -122,7 +130,11 @@
     },
     {
       "tag": "Spotify",
-      "type": "selector",
+      "type": "urltest",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true,
       "outbounds": [
         "香港策略",
@@ -137,7 +149,11 @@
     },
     {
       "tag": "人工智能",
-      "type": "selector",
+      "type": "urltest",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true,
       "outbounds": [
         "美国策略",
@@ -153,21 +169,13 @@
       "tag": "国内流量",
       "type": "urltest",
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true,
       "outbounds": [
         "直接连接",
-        "中国策略",
-        "香港策略",
-        "台湾策略",
-        "日本策略",
-        "狮城策略",
-        "韩国策略",
-        "美国策略",
-        "欧盟策略",
-        "全球手动"
+        "中国策略"
       ]
     },
     {
@@ -175,9 +183,9 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
@@ -185,9 +193,9 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
@@ -195,9 +203,9 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
@@ -205,9 +213,9 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
@@ -215,9 +223,9 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
@@ -225,9 +233,9 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
@@ -235,9 +243,9 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
@@ -245,9 +253,9 @@
       "type": "urltest",
       "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "60m",
+      "interval": "5m",
       "tolerance": 50,
-      "idle_timeout": "60m",
+      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
