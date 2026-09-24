@@ -151,7 +151,11 @@
     },
     {
       "tag": "国内流量",
-      "type": "selector",
+      "type": "urltest",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "60m",
+      "tolerance": 50,
+      "idle_timeout": "60m",
       "interrupt_exist_connections": true,
       "outbounds": [
         "直接连接",
