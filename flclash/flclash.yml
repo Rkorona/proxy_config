@@ -45,90 +45,81 @@ x-filter-jp: &filter-jp "(?i)日|jp|japan|tokyo|🇯🇵"
 x-filter-sg: &filter-sg "(?i)新|sg|singapore|🇸🇬"
 x-filter-kr: &filter-kr "(?i)韩|kr|korea|seoul|🇰🇷"
 x-filter-us: &filter-us "(?i)美|us|usa|america|united states|🇺🇸"
+x-filter-cn: &filter-cn "(?!)广|🇨🇳"
 x-filter-zj: &filter-zj "(?!)D|V|A"
 
 x-oversea:
   &oversea [
-    故障转移,
-    全球手动,
-    自建节点,
     香港策略,
     台湾策略,
     日本策略,
     狮城策略,
     韩国策略,
     美国策略,
-    DIRECT,
+    故障转移,
+    自建节点,
+    全球手动,
   ]
 x-direct:
   &direct [
-    DIRECT,
-    国外流量,
-    故障转移,
-    全球手动,
-    自建节点,
     香港策略,
     台湾策略,
     日本策略,
     狮城策略,
     韩国策略,
     美国策略,
+    中国策略,
+    故障转移,
+    自建节点,
+    全球手动,
   ]
 x-us-first:
   &us-first [
-    美国策略,
-    国外流量,
-    故障转移,
-    全球手动,
-    自建节点,
     香港策略,
     台湾策略,
     日本策略,
     狮城策略,
     韩国策略,
-    DIRECT,
+    美国策略,
+    故障转移,
+    自建节点,
+    全球手动,
   ]
 x-hk-first:
   &hk-first [
     香港策略,
-    国外流量,
-    故障转移,
-    全球手动,
-    自建节点,
     台湾策略,
     日本策略,
     狮城策略,
     韩国策略,
     美国策略,
-    DIRECT,
+    故障转移,
+    自建节点,
+    全球手动,
   ]
 x-sg-first:
   &sg-first [
-    狮城策略,
-    国外流量,
-    故障转移,
-    全球手动,
-    自建节点,
     香港策略,
     台湾策略,
     日本策略,
+    狮城策略,
     韩国策略,
     美国策略,
-    DIRECT,
+    故障转移,
+    自建节点,
+    全球手动,
   ]
 x-jp-first:
   &jp-first [
-    日本策略,
-    国外流量,
-    故障转移,
-    全球手动,
-    自建节点,
     香港策略,
     台湾策略,
+    日本策略,
     狮城策略,
     韩国策略,
     美国策略,
-    DIRECT,
+    故障转移,
+    自建节点,
+    全球手动,
   ]
 
 x-rule-set-domain:
@@ -180,12 +171,12 @@ skip-auth-prefixes: [127.0.0.1/8, "::1/128"]
 experimental: { quic-go-disable-gso: true }
 
 # 控制面板
-external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
-external-ui-name: zashboard
-external-ui: ui
-external-controller: 127.0.0.1:9090
-secret: rkorona
-profile: { store-selected: true, store-fake-ip: true }
+#external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+#external-ui-name: zashboard
+#external-ui: ui
+#external-controller: 127.0.0.1:9090
+#secret: rkorona
+#profile: { store-selected: true, store-fake-ip: true }
 
 # 流量嗅探
 sniffer:
@@ -238,18 +229,6 @@ proxy-groups:
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png,
     }
   - {
-      name: 微软服务,
-      type: select,
-      proxies: *us-first,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png,
-    }
-  - {
-      name: 苹果服务,
-      type: select,
-      proxies: *direct,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Apple_1.png,
-    }
-  - {
       name: 国内流量,
       type: select,
       proxies: *direct,
@@ -284,7 +263,7 @@ proxy-groups:
       type: select,
       include-all: true,
       filter: *filter-zj,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Clubhouse.png,
+      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin.png,
     }
 
   # 策略组区域
@@ -336,6 +315,14 @@ proxy-groups:
       proxies: [美国自动, 美国均衡],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png,
     }
+  - {
+      name: 中国策略,
+      type: select,
+      include-all: true,
+      filter: *filter-cn,
+      proxies: [中国自动, 中国均衡,DIRECT],
+      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png,
+    }
 
   # 自动测速
   - {
@@ -372,6 +359,12 @@ proxy-groups:
       name: 美国自动,
       <<: *url-test,
       filter: *filter-us,
+      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png,
+    }
+  - {
+      name: 中国自动,
+      <<: *url-test,
+      filter: *filter-cn,
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png,
     }
 
@@ -412,7 +405,13 @@ proxy-groups:
       filter: *filter-us,
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
     }
-
+  - {
+      name: 中国均衡,
+      <<: *load-balance,
+      filter: *filter-cn,
+      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
+    }
+    
 # 规则路由
 rules:
   # 广告拦截
@@ -424,15 +423,13 @@ rules:
   - RULE-SET,Private,DIRECT
   - RULE-SET,PrivateIP,DIRECT,no-resolve
 
-  # 人工智能
-  - RULE-SET,AI,人工智能
-  - RULE-SET,AIIP,人工智能,no-resolve
-
   # 谷歌服务
   - RULE-SET,Google,谷歌服务
   - RULE-SET,GoogleIP,谷歌服务,no-resolve
-  - RULE-SET,Microsoft,微软服务
-  - RULE-SET,Apple,苹果服务
+  
+  # 人工智能
+  - RULE-SET,AI,人工智能
+  - RULE-SET,AIIP,人工智能,no-resolve
 
   # 国外流量
   - RULE-SET,Proxy,国外流量
@@ -462,36 +459,13 @@ rule-providers:
       <<: *rule-set-domain,
       url: https://github.com/666OS/rules/raw/release/mihomo/domain/Private.mrs,
     }
-  Apple:
-    {
-      <<: *rule-set-domain,
-      url: https://github.com/666OS/rules/raw/release/mihomo/domain/Apple.mrs,
-    }
   AI:
     {
       <<: *rule-set-domain,
       url: https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs,
     }
-  YouTube:
-    {
-      <<: *rule-set-domain,
-      url: https://github.com/666OS/rules/raw/release/mihomo/domain/YouTube.mrs,
-    }
-  Netflix:
-    {
-      <<: *rule-set-domain,
-      url: https://github.com/666OS/rules/raw/release/mihomo/domain/Netflix.mrs,
-    }
-  Spotify:
-    {
-      <<: *rule-set-domain,
-      url: https://github.com/666OS/rules/raw/release/mihomo/domain/Spotify.mrs,
-    }
-  Disney:
-    {
-      <<: *rule-set-domain,
-      url: https://github.com/666OS/rules/raw/release/mihomo/domain/Disney.mrs,
-    }
+  
+  
   Proxy:
     {
       <<: *rule-set-domain,
@@ -502,20 +476,10 @@ rule-providers:
       <<: *rule-set-domain,
       url: https://github.com/666OS/rules/raw/release/mihomo/domain/China.mrs,
     }
-  Speedtest:
-    {
-      <<: *rule-set-domain,
-      url: https://github.com/666OS/rules/raw/release/mihomo/domain/Speedtest.mrs,
-    }
   Google:
     {
       <<: *rule-set-domain,
       url: https://github.com/666OS/rules/raw/release/mihomo/domain/Google.mrs,
-    }
-  Microsoft:
-    {
-      <<: *rule-set-domain,
-      url: https://github.com/666OS/rules/raw/release/mihomo/domain/Microsoft.mrs,
     }
   PrivateIP:
     {
@@ -527,11 +491,7 @@ rule-providers:
       <<: *rule-set-ipcidr,
       url: https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs,
     }
-  NetflixIP:
-    {
-      <<: *rule-set-ipcidr,
-      url: https://github.com/666OS/rules/raw/release/mihomo/ip/Netflix.mrs,
-    }
+
   ProxyIP:
     {
       <<: *rule-set-ipcidr,
