@@ -332,7 +332,8 @@
       {
         "rule_set": [
           "claude_domain",
-          "gemini_domain"
+          "gemini_domain",
+          "openai_domain"
         ],
         "action": "route",
         "outbound": "人工智能"
@@ -422,6 +423,13 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
+        "http_client": "direct"
+      },
+      {
+        "tag": "openai_domain",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/OpenAI/OpenAI.srs",
         "http_client": "direct"
       },
       {
