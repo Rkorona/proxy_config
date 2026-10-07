@@ -174,7 +174,7 @@
       "idle_timeout": "30m",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "直接连接",
+        "Direct",
         "中国策略"
       ]
     },
@@ -275,7 +275,7 @@
       "interrupt_exist_connections": true
     },
     {
-      "tag": "直接连接",
+      "tag": "Direct",
       "type": "direct"
     },
     {
@@ -317,7 +317,7 @@
       {
         "ip_is_private": true,
         "action": "route",
-        "outbound": "直接连接"
+        "outbound": "Direct"
       },
       {
         "clash_mode": "Global",
@@ -327,7 +327,7 @@
       {
         "clash_mode": "Direct",
         "action": "route",
-        "outbound": "直接连接"
+        "outbound": "Direct"
       },
       {
         "rule_set": [
@@ -453,7 +453,7 @@
       "external_controller": "127.0.0.1:9091",
       "external_ui": "zashboard",
       "external_ui_download_url": "https://ghfast.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
-      "external_ui_download_detour": "直接连接"
+      "external_ui_download_detour": "Direct"
     },
     "cache_file": {
       "enabled": true,
