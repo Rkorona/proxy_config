@@ -92,6 +92,7 @@
   "outbounds": [
     {
       "tag": "默认代理",
+      "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
         "香港策略",
