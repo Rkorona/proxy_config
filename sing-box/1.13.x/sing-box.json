@@ -92,11 +92,6 @@
   "outbounds": [
     {
       "tag": "默认代理",
-      "type": "urltest",
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 50,
-      "idle_timeout": "30m",
       "interrupt_exist_connections": true,
       "outbounds": [
         "香港策略",
@@ -111,11 +106,7 @@
     },
     {
       "tag": "谷歌服务",
-      "type": "urltest",
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 50,
-      "idle_timeout": "30m",
+      "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
         "香港策略",
@@ -130,11 +121,7 @@
     },
     {
       "tag": "Spotify",
-      "type": "urltest",
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 50,
-      "idle_timeout": "30m",
+      "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
         "香港策略",
@@ -149,11 +136,7 @@
     },
     {
       "tag": "人工智能",
-      "type": "urltest",
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 50,
-      "idle_timeout": "30m",
+      "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
         "美国策略",
@@ -167,11 +150,7 @@
     },
     {
       "tag": "国内流量",
-      "type": "urltest",
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 50,
-      "idle_timeout": "30m",
+      "type": "selector",
       "interrupt_exist_connections": true,
       "outbounds": [
         "Direct",
