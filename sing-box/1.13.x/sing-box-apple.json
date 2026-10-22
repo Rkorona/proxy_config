@@ -339,64 +339,64 @@
         "tag": "cn_ip",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaIPs/ChinaIPs.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaIPs/ChinaIPs.srs",
+        "download_detour": "Direct"
       },
       {
         "tag": "cn_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaMaxNoIP/ChinaMaxNoIP.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/ChinaMaxNoIP/ChinaMaxNoIP.srs",
+        "download_detour": "Direct"
       },
       {
         "tag": "google_ip",
         "type": "remote",
         "format": "binary",
-        "url": "https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geoip/google.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/sing/geo-lite/geoip/google.srs",
+        "download_detour": "Direct"
       },
       {
         "tag": "google_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Google/Google.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Google/Google.srs",
+        "download_detour": "Direct"
       },
       {
         "tag": "claude_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Claude/Claude.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Claude/Claude.srs",
+        "download_detour": "Direct"
       },
       {
         "tag": "gemini_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Gemini/Gemini.srs",
+        "download_detour": "Direct"
       },
       {
         "tag": "openai_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/OpenAI/OpenAI.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/OpenAI/OpenAI.srs",
+        "download_detour": "Direct"
       },
       {
         "tag": "proxy_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Proxy/Proxy.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Proxy/Proxy.srs",
+        "download_detour": "Direct"
       },
       {
         "tag": "Advertising_domain",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Advertising/Advertising.srs",
-        "download_detour": "自动测试"
+        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/rkorona/sing-box-ruleset/main/rule/Advertising/Advertising.srs",
+        "download_detour": "Direct"
       }
     ]
   },
@@ -404,7 +404,7 @@
     "clash_api": {
       "external_controller": "127.0.0.1:9091",
       "external_ui": "zashboard",
-      "external_ui_download_url": "https://ghfast.top/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
       "external_ui_download_detour": "Direct"
     },
     "cache_file": {
