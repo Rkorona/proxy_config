@@ -160,12 +160,8 @@
     },
     {
       "tag": "香港策略",
-      "type": "urltest",
+      "type": "selector",
       "outbounds": [],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "5m",
-      "tolerance": 50,
-      "idle_timeout": "30m",
       "interrupt_exist_connections": true
     },
     {
@@ -440,4 +436,3 @@
       "store_fakeip": true
     }
   }
-}
