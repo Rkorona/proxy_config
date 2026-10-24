@@ -21,16 +21,6 @@ x-url-test:
     hidden: true,
     tolerance: 50,
   }
-x-load-balance:
-  &load-balance {
-    type: load-balance,
-    url: "https://www.gstatic.com/generate_204",
-    interval: 300,
-    empty-fallback: REJECT,
-    include-all: true,
-    hidden: true,
-    strategy: consistent-hashing,
-  }
 x-fallback:
   &fallback {
     type: fallback,
@@ -323,8 +313,6 @@ proxy-groups:
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png,
     }
 
-
-    
 # 规则路由
 rules:
   # 广告拦截
@@ -378,8 +366,6 @@ rule-providers:
       <<: *rule-set-domain,
       url: https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs,
     }
-  
-  
   Proxy:
     {
       <<: *rule-set-domain,
@@ -405,7 +391,6 @@ rule-providers:
       <<: *rule-set-ipcidr,
       url: https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs,
     }
-
   ProxyIP:
     {
       <<: *rule-set-ipcidr,
