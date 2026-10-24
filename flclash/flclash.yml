@@ -93,7 +93,7 @@ x-rule-set-ipcidr:
   }
 
 proxy-providers:
-
+  sub1: { <<: *base-provider, url: "" }
 proxies: 
 
 # 基础设置
