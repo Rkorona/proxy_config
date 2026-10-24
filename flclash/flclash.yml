@@ -40,14 +40,14 @@ x-fallback:
     empty-fallback: REJECT,
   }
 
-x-filter-hk: &filter-hk "(?i)港|hk|hongkong|hong kong|🇭🇰"
-x-filter-tw: &filter-tw "(?i)台|tw|taiwan|taipei|🇹🇼|🇼🇸"
-x-filter-jp: &filter-jp "(?i)日|jp|japan|tokyo|🇯🇵"
-x-filter-sg: &filter-sg "(?i)新|sg|singapore|🇸🇬"
-x-filter-kr: &filter-kr "(?i)韩|kr|korea|seoul|🇰🇷"
-x-filter-us: &filter-us "(?i)美|us|usa|america|united states|🇺🇸"
-x-filter-cn: &filter-cn "(?!)广|🇨🇳"
-x-filter-zj: &filter-zj "(?!)D|V|A"
+x-filter-hk: &filter-hk "(?i)香港|港|(?:^|[^a-z])(hk|hkg|hongkong|hong kong)(?:[^a-z]|$)|🇭🇰"
+x-filter-tw: &filter-tw "(?i)台湾|台北|台|(?:^|[^a-z])(tw|twn|taiwan|taipei)(?:[^a-z]|$)|🇹🇼|🇼🇸"
+x-filter-jp: &filter-jp "(?i)日本|东京|大阪|(?:^|[^a-z])(jp|jpn|japan|tokyo|osaka)(?:[^a-z]|$)|🇯🇵"
+x-filter-sg: &filter-sg "(?i)新加坡|狮城|坡|(?:^|[^a-z])(sg|sgp|singapore)(?:[^a-z]|$)|🇸🇬"
+x-filter-kr: &filter-kr "(?i)韩国|韩|首尔|(?:^|[^a-z])(kr|kor|korea|seoul)(?:[^a-z]|$)|🇰🇷"
+x-filter-us: &filter-us "(?i)美国|美|洛杉矶|硅谷|圣何塞|(?:^|[^a-z])(us|usa|america|united states|los angeles|san jose)(?:[^a-z]|$)|🇺🇸"
+x-filter-cn: &filter-cn "(?i)广州|广东|深圳|中国|(?:^|[^a-z])(cn|china)(?:[^a-z]|$)|🇨🇳"
+x-filter-zj: &filter-zj "(?i)^ZJ-"
 
 x-oversea:
   &oversea [
@@ -104,10 +104,8 @@ x-rule-set-ipcidr:
   }
 
 proxy-providers:
-  sub1: { <<: *base-provider, url: "", override: { additional-prefix: "[M] " } }
-  sub2: { <<: *base-provider, url: "", override: { additional-prefix: "[D] " } }
-
-# 自定义代理节点
+  sub1: { <<: *base-provider, url: "" }
+  sub2: { <<: *base-provider, url: "" }
 
 proxies: 
 
@@ -124,10 +122,9 @@ unified-delay: true
 tcp-concurrent: true
 log-level: silent
 bind-address: "*"
-find-process-mode: "always"
+find-process-mode: strict
 keep-alive-interval: 15
 keep-alive-idle: 600
-authentication: [mihomo:yyds666]
 skip-auth-prefixes: [127.0.0.1/8, "::1/128"]
 experimental: { quic-go-disable-gso: true }
 
@@ -233,7 +230,7 @@ proxy-groups:
       type: select,
       include-all: true,
       filter: *filter-hk,
-      proxies: [香港自动, 香港均衡],
+      proxies: [香港自动],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png,
     }
   - {
@@ -241,7 +238,7 @@ proxy-groups:
       type: select,
       include-all: true,
       filter: *filter-tw,
-      proxies: [台湾自动, 台湾均衡],
+      proxies: [台湾自动],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png,
     }
   - {
@@ -249,7 +246,7 @@ proxy-groups:
       type: select,
       include-all: true,
       filter: *filter-jp,
-      proxies: [日本自动, 日本均衡],
+      proxies: [日本自动],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png,
     }
   - {
@@ -257,7 +254,7 @@ proxy-groups:
       type: select,
       include-all: true,
       filter: *filter-sg,
-      proxies: [狮城自动, 狮城均衡],
+      proxies: [狮城自动],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png,
     }
   - {
@@ -265,7 +262,7 @@ proxy-groups:
       type: select,
       include-all: true,
       filter: *filter-kr,
-      proxies: [韩国自动, 韩国均衡],
+      proxies: [韩国自动],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Korea.png,
     }
   - {
@@ -273,7 +270,7 @@ proxy-groups:
       type: select,
       include-all: true,
       filter: *filter-us,
-      proxies: [美国自动, 美国均衡],
+      proxies: [美国自动],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png,
     }
   - {
@@ -281,7 +278,7 @@ proxy-groups:
       type: select,
       include-all: true,
       filter: *filter-cn,
-      proxies: [中国自动, 中国均衡, DIRECT],
+      proxies: [中国自动, DIRECT],
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/China.png,
     }
 
@@ -329,49 +326,7 @@ proxy-groups:
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png,
     }
 
-  # 负载均衡
-  - {
-      name: 香港均衡,
-      <<: *load-balance,
-      filter: *filter-hk,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
-    }
-  - {
-      name: 台湾均衡,
-      <<: *load-balance,
-      filter: *filter-tw,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
-    }
-  - {
-      name: 日本均衡,
-      <<: *load-balance,
-      filter: *filter-jp,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
-    }
-  - {
-      name: 狮城均衡,
-      <<: *load-balance,
-      filter: *filter-sg,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
-    }
-  - {
-      name: 韩国均衡,
-      <<: *load-balance,
-      filter: *filter-kr,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
-    }
-  - {
-      name: 美国均衡,
-      <<: *load-balance,
-      filter: *filter-us,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
-    }
-  - {
-      name: 中国均衡,
-      <<: *load-balance,
-      filter: *filter-cn,
-      icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Round_Robin_1.png,
-    }
+
     
 # 规则路由
 rules:
