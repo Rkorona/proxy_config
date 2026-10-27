@@ -21,16 +21,6 @@ x-url-test:
     hidden: true,
     tolerance: 50,
   }
-x-load-balance:
-  &load-balance {
-    type: load-balance,
-    url: "https://www.gstatic.com/generate_204",
-    interval: 300,
-    empty-fallback: REJECT,
-    include-all: true,
-    hidden: true,
-    strategy: consistent-hashing,
-  }
 x-fallback:
   &fallback {
     type: fallback,
@@ -103,35 +93,33 @@ x-rule-set-ipcidr:
   }
 
 proxy-providers:
-
+  # sub1: { <<: *base-provider, url: "" }
 proxies: 
 
 # 基础设置
 mode: rule
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
-tproxy-port: 7895
-ipv6: false
+port: 7894
+socks-port: 7893
+redir-port: 7891
+mixed-port: 7890
+tproxy-port: 1536
+ipv6: true
 allow-lan: false
 unified-delay: true
 tcp-concurrent: true
-log-level: silent
+log-level: info #silent
 bind-address: "*"
-find-process-mode: strict
+find-process-mode: always
 keep-alive-interval: 15
 keep-alive-idle: 600
 skip-auth-prefixes: [127.0.0.1/8, "::1/128"]
 experimental: { quic-go-disable-gso: true }
 
 # 控制面板
-#external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
-#external-ui-name: zashboard
-#external-ui: ui
-#external-controller: 127.0.0.1:9090
-#secret: rkorona
-#profile: { store-selected: true, store-fake-ip: true }
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip
+
 
 # 流量嗅探
 sniffer:
@@ -154,8 +142,9 @@ tun:
 # DNS设置
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   enhanced-mode: fake-ip
+  listen: 0.0.0.0:1053
   fake-ip-range: 198.18.0.1/16
   default-nameserver: [119.29.29.29, 180.184.1.1, 223.5.5.5]
   nameserver: [https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
@@ -323,8 +312,6 @@ proxy-groups:
       icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Auto.png,
     }
 
-
-    
 # 规则路由
 rules:
   # 广告拦截
@@ -378,8 +365,6 @@ rule-providers:
       <<: *rule-set-domain,
       url: https://github.com/666OS/rules/raw/release/mihomo/domain/AI.mrs,
     }
-  
-  
   Proxy:
     {
       <<: *rule-set-domain,
@@ -405,7 +390,6 @@ rule-providers:
       <<: *rule-set-ipcidr,
       url: https://github.com/666OS/rules/raw/release/mihomo/ip/AI.mrs,
     }
-
   ProxyIP:
     {
       <<: *rule-set-ipcidr,
