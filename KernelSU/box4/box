@@ -1,0 +1,15 @@
+#!/data/data/com.termux/files/usr/bin/bash
+S=/data/adb/box/scripts
+
+case "$1" in
+  start)
+    su -c "$S/box.service start && $S/box.tproxy start" ;;
+  stop)
+    su -c "$S/box.service stop && $S/box.tproxy stop" ;;
+  restart)
+    su -c "$S/box.tproxy stop; $S/box.service restart && $S/box.tproxy start" ;;
+  status)
+    su -c "$S/box.service status" ;;
+  *)
+    echo "用法: box {start|stop|restart|status}"; exit 1 ;;
+esac
